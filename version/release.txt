@@ -1,0 +1,30 @@
+Release Date : 07-07-2014
+1. update medicine_MASTER ADD MEDICINE_STATUS	varchar(10) with default ACTIVE	\
+
+2. ALTER TABLE  `investigation_master` ADD  `STATUS` VARCHAR( 10 ) NOT NULL DEFAULT  'ACTIVE'
+
+3. ALTER TABLE  `investigation_master` ADD  `DATE_ADDED` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+Release date : 16-07-14
+
+1. Changed the code in prescription2.php and makeprescription/pre_prescriptions.php
+
+Release date : 18-07-14
+
+ALTER TABLE  `patient` ADD  `patient_name` VARCHAR( 100 ) NOT NULL AFTER  `patient_last_name`
+ALTER TABLE  `patient` ADD  `age` INT( 3 ) NOT NULL AFTER  `patient_dob`
+
+
+Release Date : 09-08-14
+Changed in printprescription.php
+
+Release Date : 23-08-14
+Change in banner.php,
+New reports.php, searchPatientClinicalImpression.php
+
+Release Date : 12-09-14
+New Feature added
+Slowness Bug fixed by improving the query strings.
+Export to excel utility provided.
+
+

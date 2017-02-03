@@ -1,0 +1,28 @@
+select a.visit_id, c.patient_id, c.GENDER, c.patient_first_name, c.patient_last_name, c.patient_address, c.patient_city,
+c.patient_dob, c.patient_cell_num, c.patient_alt_cell_num, c.patient_email
+from prescription a, visit b, patient c where a.visit_id = b.visit_id and b.patient_id=c.patient_id and prescription_id = '107'
+
+
+
+SELECT b.type
+FROM prescribed_cf a, clinical_impression b
+WHERE a.clinical_impression_id = b.id
+AND a.prescription_id = '107'
+
+select c.bp_up
+from prescription a, patient_health_details_by_receptionist c
+where a.visit_id = c.visit_id and a.prescription_id = '107'
+
+select * from patient_health_details_by_receptionist c
+where c.visit_id in (select b.visit_id  from prescription b where b.prescription_id = '107')
+
+SELECT b.investigation_name
+FROM prescribed_investigation a, investigation_master b
+WHERE a.investigation_id = b.ID
+AND prescription_id = '107'
+
+SELECT b.investigation_name, a.value, b.unit
+FROM patient_investigation a, investigation_master b
+WHERE a.patient_id = '9'
+AND a.visit_id = '7'
+AND a.investigation_id = b.ID

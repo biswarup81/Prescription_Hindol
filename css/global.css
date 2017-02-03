@@ -1,0 +1,228 @@
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	background:#fff;
+	font-size:14px;
+	font-family:Iskoola Pota, sans-serif, Arial, Helvetica;
+}
+a {
+	text-decoration:none;
+	color:#000;
+}
+ul, li {
+	list-style:none;
+}
+h1{
+	font-size:30px;
+        margin-top: 0px;
+}
+h2{
+	font-size:26px;
+}
+h3{
+	font-size:24px;
+}
+h4{
+	font-size:21px;
+}
+h5{
+	font-size:18px;
+}
+h6{
+	font-size:16px;
+}
+.clear {
+	clear:both;
+}
+.wrapper {
+	width:960px;
+	margin:0 auto;
+	display: table;
+}
+.header, .content, .footer {
+	width:100%;
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+.tl {
+	text-align:left;
+}
+.tr {
+	text-align:right;
+}
+.tc {
+	text-align:center;
+}
+.header-top {
+	padding:10px 40px 0;
+}
+.header-top h6{
+	padding:0 0 10px;
+}
+.header-outsite {
+	background:#ECECEC;
+	margin:10px 0 0;
+}
+.header-bottom {
+	padding:5px 40px 0;
+}
+.header-bottom p{
+	font-size:16px;
+	font-family:"Times New Roman", Times, serif;
+	padding:0 0 5px;
+}.header-bottom img{
+	padding:0 5px 0 0;
+}
+.header-bottom img.message{
+	padding:0 5px 0 20px;
+}
+.font-arial {
+	font-family:Arial, Helvetica, sans-serif !important;
+}
+.footer {
+	margin:20px 0 0;
+}
+.footer-top{
+	padding:0;
+}
+.footer-top hr{
+	margin: 0 20px 10px;
+	border: none;
+    height: 3px;
+	background:#000;
+}
+.footer-top h6{
+	float: left;
+        width: 320px;
+	padding:0 40px;
+        margin-top: 0px;
+}
+.footer-bottom p {
+	font-size:10px;
+	font-weight:bold;
+	margin:10px 0;
+}
+.content-box-frame {
+	margin:0 40px ;
+	font-family:"Times New Roman", Times, serif;
+}
+.content-box {
+	margin:20px 0 0;
+	width:50%;
+	float: left;
+}
+.content-box .title {
+	border-bottom: 1px solid #000;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 0 8px;
+	margin:0 20px 0 0;
+}
+.content-box p {
+	margin:15px 20px 20px 0;
+	font-style:italic;
+}
+.content-box p img {
+    float: right;
+}
+.content-box input[type="text"] {
+	border: 1px solid #000;
+    padding: 3px 5px;
+	margin:0 0 0 10px;
+	float:left;
+	width: 62px;
+}
+
+
+
+.content-box input.error{
+	border: 2px solid red;
+	background-color: #FFFFD5;
+	margin: 0px;
+	color: red;
+}
+
+.add_note {
+	float:left;
+	margin:5px 0 0 10px;
+}
+.modify {
+	float:left;
+	margin:0 0 0 45px;
+}
+.modify span{
+	display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 3px 0 0 2px;
+    text-decoration: underline;
+}
+.modify img {
+	float:left;
+	margin:5px 0 0 0;
+}
+.calender {
+	float:left;
+	margin:0;
+}
+.calender span.itl {
+	font-style:italic;
+}
+.calender span{
+	display: inline-block;
+    float: left;
+    font-size: 14px;
+    margin: 12px 0 0 2px;
+}
+.calender img {
+	float:left;
+	margin:5px 10px 0 15px;
+}
+.calender .modify {
+	margin:5px 0 0 45px;
+}
+.calender .modify span {
+	display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 3px 0 0 2px;
+    text-decoration: underline;
+}
+.calender .modify img {
+	float:left;
+	margin:5px 0 0 0;
+}
+.signature {
+    float: right;
+    font-family: "Times New Roman",Times,serif;
+    padding: 0;
+    text-align: center;
+    width: 50%;
+}
+.signature p{
+    padding: 10px 0 0 60px;
+	margin: 0 0 0 180px;
+	border-top: 1px solid #000;
+}
+
+.delete_row{
+	background:url(../images/save.png);
+	border:none;
+	cursor:pointer;
+	width:16px; height:16px;
+}
+.update_row{
+	background:url(../images/refresh.png);
+	border:none;
+	cursor:pointer;
+	width:16px; height:16px;
+}
+.add {
+    background-image: url("../images/add_note.png")
+}

@@ -1,0 +1,62 @@
+.b_success{
+	width:400px; height:35px; border:solid 1px #0C0; background:#D2FBDC; color:#093; line-height:35px; text-align:center;
+}
+.b_falure{
+	width:400px; height:35px; border:solid 1px #FB673C; background:#FFDDD7; color:#F00; line-height:35px; text-align:center; margin:12px;
+}
+.search_result{
+	width:400px; background:#E4F8E6;
+}
+.search_result table{
+	margin-left:30px; margin-top:20px;
+}
+.b_home_box{
+	 width:100%;
+}
+.b_s_form{
+	width:65%;
+	float:left;
+	border-right:dotted 1px #060;
+	min-height:150px;
+}
+.b_a_exist{
+	width:20%;
+	float:left;
+	border:solid 1px #009;
+	margin-left:20px;
+}
+.b_a_exist a{
+	text-align:center;
+	padding:15px;
+}
+.b_a_exist a:hover{
+	text-decoration:none;
+}
+.livesearch{
+	position:absolute; min-width:130px;
+}
+#livesearch{
+	background:#333;
+}
+#livesearch span{
+	width:130px;
+}
+#livesearch span:hover{
+	background:#FFF;
+	width:130px;
+}
+.delete_row{
+	background:url(../images/save.png);
+	border:none;
+	cursor:pointer;
+	width:16px; height:16px;
+}
+.update_row{
+	background:url(../images/refresh.png);
+	border:none;
+	cursor:pointer;
+	width:16px; height:16px;
+}
+#mainarea{
+	min-height:300px;
+}

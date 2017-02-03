@@ -1,0 +1,35 @@
+VISIT_ID=4577&patient_id=2001&PRESCRIPTION_ID=4511
+
+SELECT a.VISIT_ID, a.PATIENT_ID, a.VISIT_DATE, b.prescription_id, a.visit_id 
+FROM visit a, prescription b
+WHERE patient_id = '2001'
+AND visited = 'YES'
+AND a.visit_id = b.visit_id
+AND b.STATUS = 'SAVE' order by VISIT_DATE desc LIMIT 0 , 5
+
+
+SELECT b.investigation_name, a.value, b.unit, investigation_id
+FROM patient_investigation a, investigation_master b
+WHERE a.patient_id = '2001'
+AND a.visit_id = '4577'
+AND a.investigation_id = b.ID
+
+total, Query took 0.0005 se
+
+
+SELECT b.type, b.ID
+FROM prescribed_cf a, clinical_impression b
+WHERE a.clinical_impression_id = b.id
+AND a.prescription_id = '4511'
+
+Query took 0.0052 sec
+
+
+select a.VALUE, b.NAME, a.ID from
+PATIENT_HEALTH_DETAILS a , patient_health_details_master b
+where
+a.ID = b.ID
+and a.VISIT_ID = '4577'
+
+
+delete from precribed_medicine where MEDICINE_ID = '$MEDICINE_ID' and PRESCRIPTION_ID ='$PRESCRIPTION_ID'
