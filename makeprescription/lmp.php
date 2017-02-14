@@ -26,7 +26,7 @@
     <div class="clear"></div>
 
 
-<input id="datepicker1" name="theDate" type="text" class="input_box_add" value="" onfocus="myFocus(this);" onblur="myBlur(this);" />
+<input id="datepicker1" name="theDate" type="text" class="input_box_small" value="" onfocus="myFocus(this);" onblur="myBlur(this);" />
 
 
 <!-- Get In Touch Ends -->					

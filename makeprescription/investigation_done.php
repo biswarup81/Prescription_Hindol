@@ -1,5 +1,5 @@
 <div class="block1" style="margin-right:12px; margin-left:12px;">
-    <div class="headings"><!--<img src="images/Briefcase-Medical.png" />-->&nbsp;Investigation Done</div>
+    <div class="headings"><!--<img src="images/Briefcase-Medical.png" />-->&nbsp;Examinations</div>
     <div class="inner1">
     <table>    
 
@@ -31,8 +31,8 @@
         </tr> 
       
         <tr>
-            <td width="100%"><input style="width: 120px;" class="input_box_small" type='text' id='investigation'/>
-                <td width="100%"><input class="input_box_small" type='text' id='txtPatientInvval'/>
+            <td width="100%"><input class="input_box_small" type='text' id='investigation'/>
+                <td width="100%"><input class="input_box_very_small" type='text' id='txtPatientInvval'/>
                 
                 <td>
                     <a id='plus7' href='#' onclick="addPatientInvestigation('<?php echo $patient_id ; ?>','<?php echo $visit_id ; ?>')">[+]</a>

@@ -1,6 +1,6 @@
-<div class="block" style="width: 245px;">
+<div class="block" >
 <div class="headings"><!--<img src="images/Briefcase-Medical.png" />-->&nbsp;Social History</div>
-<div class="inner" style="width: 240px;">
+<div class="inner" >
 
     <table>
         <tr><td id="SOCIAL_HISTORY" width="100%">
@@ -29,7 +29,7 @@
             </td>
             </tr>
             <tr>
-                <td width="100%"><input style="width: 180px;" class="input_box_big" type='text' id='txtSocialHistory'/>
+                <td width="100%"><input  class="input_box_big" type='text' id='txtSocialHistory'/>
 
                 </td>
                 <td>

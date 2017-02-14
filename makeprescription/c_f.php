@@ -1,5 +1,5 @@
 <div class="block1">
-    <div class="headings"><!--<img src="images/Briefcase-Medical.png" />-->&nbsp;C/F </div>
+    <div class="headings"><!--<img src="images/Briefcase-Medical.png" />-->&nbsp;Patient Health</div>
     <div class="inner1">
         <table>
             <tr><td id="CF" width="100%">
@@ -38,7 +38,7 @@
                                         <input style="width: 140px;" class="input_box_small" type='text' id='txtCFName'/>
                                 </td>
                                 <td>
-                                        <input style="width: 40px;" class="input_box_small" type='text' id='txtCFValue'/>
+                                        <input style="width: 40px;" class="input_box_very_small" type='text' id='txtCFValue'/>
                                 </td>	
                                 <td>
                                     <input type='button' class="delete_row" onclick="addCF('<?php echo $visit_id ; ?>')"/>

@@ -34,7 +34,7 @@
 
                 <div  class="addfileds">
                     <input id="invest1" type="text" value=""/>
-                    <input type="button" class="delete_row" name="ADD" onclick="return addInvestigation('TYPE1')" value="ADD" />
+                    <input type="button" class="delete_row" name="ADD" onclick="return addInvestigation('TYPE1')" value="" />
 
                 </div>              
             </div>
@@ -56,7 +56,7 @@
 
                 <div  class="addfileds">
                     <input id="invest2" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE2')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE2')" value="" />
                 </div>    
             </div>
             <!--END of tab2-->
@@ -77,7 +77,7 @@
 
                 <div  class="addfileds">
                     <input id="invest3" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE3')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE3')" value="" />
 
                 </div>  
             </div>
@@ -99,7 +99,7 @@
 
                 <div  class="addfileds">
                     <input id="invest4" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE4')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE4')" value="" />
 
                 </div>
             </div>
@@ -121,7 +121,7 @@
 
                 <div  class="addfileds">
                     <input id="invest5" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE5')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE5')" value="" />
 
                 </div>
             </div>
@@ -143,7 +143,7 @@
 
                 <div  class="addfileds">
                     <input id="invest6" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE6')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE6')" value="" />
 
                 </div>
             </div>
@@ -165,7 +165,7 @@
 
                 <div  class="addfileds">
                     <input id="invest7" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE7')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE7')" value="" />
 
                 </div>
             </div>
@@ -187,7 +187,7 @@
 
                 <div  class="addfileds">
                     <input id="invest8" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE8')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE8')" value="" />
 
                 </div>
             </div>
@@ -209,7 +209,7 @@
 
                 <div  class="addfileds">
                     <input id="invest9" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE9')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE9')" value="" />
 
                 </div>
             </div>
@@ -231,7 +231,7 @@
 
                 <div  class="addfileds">
                     <input id="invest10" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE10')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE10')" value="" />
 
                 </div>
             </div>
@@ -253,7 +253,7 @@
 
                 <div  class="addfileds">
                     <input id="invest11" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE11')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE11')" value="" />
 
                 </div>
             </div>
@@ -275,7 +275,7 @@
 
                 <div  class="addfileds">
                     <input id="invest12" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE12')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE12')" value="" />
 
                 </div>
             </div>
@@ -297,7 +297,7 @@
 
                 <div  class="addfileds">
                     <input id="invest13" type="text" value=""/>
-                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE13')" value="ADD" />
+                    <input type="button" class="delete_row" name="" onclick="return addInvestigation('TYPE13')" value="" />
 
                 </div>
             </div>

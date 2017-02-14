@@ -20,6 +20,7 @@ function deleteClinicalImpression(ci_id, pres_id){
 
     xmlhttp.open("GET",str,true);
     xmlhttp.send();
+    document.getElementById("CI").focus();
     return false;
 }
 
@@ -43,6 +44,7 @@ function deletePastMedicalHistory(ci_id, pres_id){
 	str = "ajax/delete_past_medical_history.php?mode=DELETE_CLINICAL_IMPRESSION&ID="+ci_id+"&PRESCRIPTION_ID="+pres_id;
     xmlhttp.open("GET",str,true);
     xmlhttp.send();
+    document.getElementById("PastMedical").focus()
     return false;
 }
 
@@ -236,6 +238,32 @@ function updateDeleteCF(cf_id, visit_id, mode){
         xmlhttp.open("GET",str,true);
         xmlhttp.send();
     }
+    document.getElementById("txtCFName").focus();
+    return false;
+}
+
+
+
+function deleteAllergy(allergy_id, pres_id){
+    //alert("social_history_id -> "+social_history_id);
+    //alert("Prescription Id -> "+pres_id);
+    if (window.XMLHttpRequest){
+  		xmlhttp=new XMLHttpRequest();
+    }else{
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+            xmlhttp.onreadystatechange=function(){
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                
+                document.getElementById("ALLERGY").innerHTML=xmlhttp.responseText;
+        }
+    }
+    str = "ajax/delete_allergy.php?mode=DELETE_ALLERGY&ID="+allergy_id+"&PRESCRIPTION_ID="+pres_id;
+
+    xmlhttp.open("GET",str,true);
+    xmlhttp.send();
+    document.getElementById("ALLERGY").focus();
     return false;
 }
 
@@ -271,8 +299,46 @@ function addSocialHistory(prescriptionid){
 
         xmlhttp.open("GET",str,true);
         xmlhttp.send();
+        
     }
-    document.getElementById("txtCI").focus(); 
+    document.getElementById("txtSocialHistory").focus(); 
+    return false;
+}
+
+function addAllergy(prescriptionid){
+    //alert("TYPE -> "+type);
+    //alert("Prescription Id -> "+prescriptionid);
+    var allergy = document.getElementById("txtAllergy").value;
+    //alert("Allergy ->"+ allergy);
+    
+    if(allergy === "" || allergy === null)
+    {
+        alert ("Allergy Cannot be blank");
+    } else {
+
+        if (window.XMLHttpRequest){
+                    xmlhttp=new XMLHttpRequest();
+        }else{
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+                xmlhttp.onreadystatechange=function(){
+                if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                    //document.getElementById("CI").innerHTML = "";
+                    //alert(xmlhttp.responseText);
+                    document.getElementById("ALLERGY").innerHTML=xmlhttp.responseText;
+                    document.getElementById("txtAllergy").value = "";
+                    
+            }
+        }
+        
+        
+        str = "ajax/add_allergy.php?mode=ADD_ALLERGY&TYPE="+allergy+"&prescription_id="+prescriptionid;
+
+        xmlhttp.open("GET",str,true);
+        xmlhttp.send();
+    }
+    document.getElementById("txtAllergy").focus();
     return false;
 }
 
@@ -288,13 +354,14 @@ function deleteSocialHistory(social_history_id, pres_id){
             xmlhttp.onreadystatechange=function(){
             if (xmlhttp.readyState==4 && xmlhttp.status==200){
                 
-                document.getElementById("CI").innerHTML=xmlhttp.responseText;
+                document.getElementById("txtSocialHistory").innerHTML=xmlhttp.responseText;
         }
     }
     str = "ajax/delete_social_history.php?mode=DELETE_SOCIAL_HISTORY&ID="+social_history_id+"&PRESCRIPTION_ID="+pres_id;
 
     xmlhttp.open("GET",str,true);
     xmlhttp.send();
+    document.getElementById("txtSocialHistory").focus();
     return false;
 }
 
@@ -323,17 +390,17 @@ else
   var dose2dir = getCheckedRadio("lradio");
   var dose3 = document.getElementById("dose3").value;
   var dose3dir = getCheckedRadio("dradio")
-  
+  var duration = document.getElementById("duration_count").value + " "+document.getElementById("duration_type").value
   var dosage = "";
   
   if(dose1dir != ""){
-      dosage = dosage +dose1+ " "+ dose1dir+" breakfast. ";
+      dosage = dosage +dose1+ " "+ dose1dir+" breakfast for "+duration;
   }
   if(dose2dir != ""){
-      dosage = dosage +dose2+ " "+ dose2dir+" lunch. ";
+      dosage = dosage +dose2+ " "+ dose2dir+" lunch for "+duration;
   }
   if(dose3dir != ""){
-      dosage = dosage +dose3+ " "+ dose3dir+" dinner. ";
+      dosage = dosage +dose3+ " "+ dose3dir+" dinner for "+duration;
   }
   
   alert(dosage);
@@ -753,6 +820,16 @@ $(document).ready(function(){
 		//multipleSeparator: ",",
 		selectFirst: false
 	});
+        $("#txtAllergy").autocomplete("get_allergy_list.php", {
+		width: 260,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+	});
         
         $("#txtCFName").autocomplete("get_cf.php", {
 		width: 260,
@@ -788,8 +865,10 @@ $(document).ready(function(){
         $('#minus7').click(function(e) {
             e.preventDefault();
         });
-
-});
+        $('a').click(function (e) {
+            e.preventDefault();
+          });
+ });
 
 function getCheckedRadio(elementName) {
     var radioButtons = document.getElementsByName(elementName);

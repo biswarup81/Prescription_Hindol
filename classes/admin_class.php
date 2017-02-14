@@ -121,6 +121,28 @@ class admin{
 
         }
     }
+    
+    function insertUpdateAllergy($prescription_id, $allergy){
+        
+        $query = "select ALLERGY_ID from allergy_master where allergy_name = '$allergy'";
+        $result = mysql_query($query);
+        $id = "";
+        if(mysql_num_rows($result) > 0){
+            //Clinical Impression Type exists in the Database. Get the ID
+            while($rs = mysql_fetch_array($result)){
+                $id = $rs['ALLERGY_ID'];
+            }
+        } else {
+            //Insert into master and then add
+            $query = "insert into allergy_master (ALLERGY_NAME) values('$allergy')";
+            mysql_query($query) or die(mysql_error());
+            $id = mysql_insert_id();
+        }
+        $query1 = "insert into prescribed_allergy(allergy_id, prescription_id) 
+                    values('$id' , '$prescription_id')";
+        mysql_query($query1) or die(mysql_error());
+    }
+    
     function insertUpdateSocialHistory($prescription_id, $type){
         
         $query = "select ID from social_history_master where TYPE = '$type'";
@@ -381,6 +403,14 @@ class admin{
         mysql_query("delete from prescribed_cf 
              where prescription_id = '$prescription_id' 
              and clinical_impression_id  ='$ci_id' ") or die(mysql_error());
+        
+        
+    }
+    function deleteAllergy($prescription_id,$allergy_id){
+        //$message = "";
+        mysql_query("delete from prescribed_allergy 
+             where prescription_id = '$prescription_id' 
+             and ALLERGY_ID  ='$allergy_id' ") or die(mysql_error());
         
         
     }

@@ -33,3 +33,5 @@ and a.VISIT_ID = '4577'
 
 
 delete from precribed_medicine where MEDICINE_ID = '$MEDICINE_ID' and PRESCRIPTION_ID ='$PRESCRIPTION_ID'
+
+

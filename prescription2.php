@@ -118,49 +118,24 @@ $r1 = mysql_query($query) or die(mysql_error());
             <!--BEGIN header-->
             <?php include("banner.php") ?>
             <!--END of header-->
-                <div class="content">
-                    <!--BEGIN pateint details-->
-                    <div class="inner_id" style="margin-right:12px; margin-left:12px;">
-                        <?php echo $d1->patient_id; ?>
-
-                    </div>
-                    <div class="inner_name" style="margin-right:12px; margin-left:12px;">
-                        
-                         <?php if($d1->patient_name == null || $d1->patient_name == ""){
-                            echo $d1->patient_first_name." ".$d1->patient_last_name; } else { echo $d1->patient_name ; }?>
-
-                    </div>
-                    <div class="inner_sex" style="margin-right:12px; margin-left:12px;">
-                        <?php echo $d1->GENDER ?>
-
-                    </div>
-                    <div class="inner_age" style="margin-right:12px; margin-left:12px;">
-                        <?php 
+                
+            <div class="details">
+            
+                              
+                <div class="del_col">ID # <?php echo $d1->patient_id; ?>, <?php if($d1->patient_name == null || $d1->patient_name == ""){
+                            echo $d1->patient_first_name." ".$d1->patient_last_name; } else { echo $d1->patient_name ; }?>, <?php echo $d1->GENDER ?>, <?php 
                         $update= new admin(); 
                         if($d1->age == 0){
                             print $update->calcAge1($d1->patient_dob, $d1->VISIT_DATE) ;
                         }else {
                             echo $d1->age;
                         }
-                        ?>
-
-                    </div>
-                    
-                </div>
-            <div class="details">
-            
-                              
-                <div class="del_col"><?php echo $d1->patient_address . ", " . $d1->patient_city; ?></div>
+                        ?>, <?php echo $d1->patient_address . ", " . $d1->patient_city; ?></div>
                 <div class="del_col_in">Ph: <?php echo $d1->patient_cell_num; ?></div>
                 
             
             </div>
             
-            <div class="details">
-            
-                
-            
-            </div>
             <!--END of patient details-->
             
             <form id="form1" name="form1" method="post" action="printprescription.php" onsubmit="return validate();" >
@@ -188,16 +163,13 @@ $r1 = mysql_query($query) or die(mysql_error());
               <?php include("makeprescription/lmp.php"); ?>
                
               <!--END of block FOUR-->
-
-			    <!--BEGIN block FIVE-->
-              <?php include("makeprescription/pre_prescriptions.php");?>
-                
-              <!--END of block FVE -->
-			  <!--BEGIN block one-->
-                <?php include("makeprescription/clinical_impression.php");?>
-                
-                
-                <!--END of block one-->
+               
+              <!--BEGIN block FOUR-->
+              <?php include("makeprescription/allergy.php"); ?>
+               
+              <!--END of block FOUR-->
+              
+			    
 
 				<!--BEGIN block two-->
                 <?php include("makeprescription/investigation_done.php");?>
@@ -284,27 +256,28 @@ $r1 = mysql_query($query) or die(mysql_error());
                         </table>
                     </div>
                     
-                    <table width="950" border="0" cellspacing="1" cellpadding="1" id="datatable">
+                    <table width="954" border="0" cellspacing="1" cellpadding="1" id="datatable">
                           <tr>
-                            <td class="head_tbl" width="350">Medicine's Names</td>
-                            <td class="head_tbl" align="center" width="170">Breakfast</td>
-                            <td class="head_tbl" align="center" width="170">Lunch</td>
-                            <td class="head_tbl" align="center" width="170">Dinner</td>
-                            <td class="head_tbl" align="center" width="90">ACTION</td>
+                            <td class="head_tbl" >Medicine's Names</td>
+                            <td class="head_tbl" align="center" >Breakfast</td>
+                            <td class="head_tbl" align="center" >Lunch</td>
+                            <td class="head_tbl" align="center" >Dinner</td>
+                            <td class="head_tbl" align="center" >Duration</td>
+                            <td class="head_tbl" align="center" >ACTION</td>
                           </tr>
                           
                           
                           
                             <tr>
-                            <td class="head_tbl" width="250">
-                            <input type="text" name="medicine_name" id="course" style="width: 330px;" class="input_box_big" />
+                            <td class="head_tbl" >
+                            <input type="text" name="medicine_name" id="course"  class="input_box_very_big" />
                             
 							</td>
-                            <td class="head_tbl" align="center" width="149">
+                            <td class="head_tbl" align="center" >
                                 <table>
                                     <tr>
                                         
-                                        <td><input name="dose1" id="dose1" type="text" size="10" class="input_small"/></td>
+                                        <td><input name="dose1" id="dose1" type="text" size="10" class="input_box_very_small"/></td>
                                         <td><input type="radio" name="bfradio" value ="before"/> before<br>
                                         <input type="radio" name="bfradio" value ="after"/> after</td>
                                     </tr>
@@ -314,11 +287,11 @@ $r1 = mysql_query($query) or die(mysql_error());
                                 
                                 
                             </td>
-                            <td class="head_tbl" align="center" width="150">
+                            <td class="head_tbl" align="center" >
                                  <table>
                                     <tr>
                                         
-                                        <td><input name="dose2" id="dose2" type="text" size="10" class="input_small"/></td>
+                                        <td><input name="dose2" id="dose2" type="text" size="10" class="input_box_very_small"/></td>
                                         <td><input type="radio" name="lradio" value ="before"/> before<br>
                                         <input type="radio" name="lradio" value ="after"/> after</td>
                                     </tr>
@@ -327,11 +300,11 @@ $r1 = mysql_query($query) or die(mysql_error());
                                 </table>
                                 
                             </td>
-                            <td class="head_tbl" align="center" width="150">
+                            <td class="head_tbl" align="center" >
                                 <table>
                                     <tr>
                                         
-                                        <td><input name="dose3" id="dose3" type="text" size="10" class="input_small"/></td>
+                                        <td><input name="dose3" id="dose3" type="text" size="10" class="input_box_very_small"/></td>
                                         <td><input type="radio" name="dradio" value ="before"/> before<br>
                                         <input type="radio" name="dradio" value ="after"/> after</td>
                                     </tr>
@@ -339,6 +312,22 @@ $r1 = mysql_query($query) or die(mysql_error());
                                     
                                 </table>
                                 
+                            </td>
+                            <td class="head_tbl" align='center'>
+                                <table>
+                                    <tr>
+                                        
+                                        <td><input name="duration_count" id="duration_count" type="text" class="input_box_very_small"/></td>
+                                        <td><select name="duration_type" id="duration_type">
+                                                <option value="Days">Days</option>
+                                                <option value="Weeks">Weeks</option>
+                                                <option value="Months">Months</option>
+                                            </select>
+                                            </td>
+                                    </tr>
+                                    
+                                    
+                                </table>
                             </td>
                             <td class="head_tbl" align='center'>
                             <input type="hidden" name="PRESCRIPTION_ID" value="<?php echo $_GET['PRESCRIPTION_ID']; ?>" id="PRESCRIPTION_ID" />

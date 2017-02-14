@@ -117,7 +117,10 @@
                 
                 </div>
                 <!--END of block two-->
-                
+                <div class='block'>
+                    <div class="headings">&nbsp</div>
+                    <img src="images/lnc.jpg"  />
+                </div>
                 <!--BEGIN block three-->
                 <div class="block">
                     <div class="headings"><!--<img src="images/Briefcase-Medical.png" />-->&nbsp;C/F </div>

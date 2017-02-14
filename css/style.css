@@ -279,37 +279,48 @@ h6{
 
 .block{
 	float:left;
-	width:305px;
+	width:265px;
 	height:auto;
 	background:#fff;
+        padding-top: 15px;
+}
+.block_symptoms{
+	float:left;
+	width:265px;
+	height:auto;
+	background:#fff;
+        padding-top: 15px;
 }
 .block1{
 	float:left;
 	width:220px;
 	height:auto;
 	background:#fff;
+        padding-top: 15px;
 }
 .block_history{
 	float:left;
 	width:74px;
 	height:auto;
 	background:#fff;
+        padding-top: 15px;
 }
 .block_addiction{
 	float:left;
 	width:130px;
 	height:auto;
 	background:#fff;
+        padding-top: 15px;
 }
 .inner{
 	float:left;
-	width:295px;
+	width:250px;
 	min-height:90px;
 	border:1px solid #bebebe;
 	padding:5px;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#333;
-	font-size:14px;
+	font-size:12px;
 }
 
 .inner1{
@@ -320,18 +331,18 @@ h6{
 	padding:5px;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#333;
-	font-size:14px;
+	font-size:12px;
 }
 
 .inner_history{
 	float:left;
-	width:65px;
+	width:87px;
 	min-height:90px;
 	border:1px solid #bebebe;
 	padding:5px;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#333;
-	font-size:14px;
+	font-size:12px;
 }
 .inner_addiction{
 	float:left;
@@ -341,17 +352,17 @@ h6{
 	padding:5px;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#333;
-	font-size:14px;
+	font-size:12px;
 }
 .inner_lmp{
 	float:left;
-	width:155px;
+	width:142px;
 	min-height:90px;
 	border:1px solid #bebebe;
 	padding:5px;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#333;
-	font-size:14px;
+	font-size:12px;
 }
 
 .inner_id{
@@ -401,7 +412,7 @@ h6{
 
 .headings{
 	float:left;
-	width:305px;
+	width:173px;
 	height:18px;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#333;
@@ -449,13 +460,14 @@ h6{
 }
 
 .details{
-	float:left;
-	width:980px;
-	height:auto;
-	border-bottom:1px solid #eaeaea;
-	background:#fcfcfc;
-	padding-bottom:10px;
-	padding-top:5px;
+	    float: left;
+            width: 980px;
+            height: auto;
+            border-bottom: 1px solid #eaeaea;
+            border-top: 1px solid #eaeaea;
+            background: #fcfcfc;
+            padding-bottom: 7px;
+            padding-top: 5px;
 }
 
 
@@ -485,7 +497,7 @@ h6{
 
 .rx{
 	float:left;
-	width:940px;
+	width:954px;
 	height:auto;
 	border-bottom:1px dotted #bebebe;
 	background:#fff;
@@ -494,7 +506,7 @@ h6{
 
 .rx_inner{
 	float:left;
-	width:940px;
+	width:954px;
 	height:auto;
 	background:#fff;
 	font-family:Arial, Helvetica, sans-serif;
@@ -530,7 +542,7 @@ h6{
 
 .invest{
 	float:left;
-	width:940px;
+	width:954px;
 	height:auto;
 	border-bottom:1px solid #eaeaea;
 	background:#fff;
@@ -539,12 +551,12 @@ h6{
 
 .invest_inner{
 	float:left;
-	width:940px;
+	width:954px;
 	height:auto;
 	background:#fff;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#555;
-	font-size:14px;
+	font-size:12px;
 	font-weight:normal;
 	padding-top:5px;
 }
@@ -572,7 +584,7 @@ h6{
 	background:#fff;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#555;
-	font-size:14px;
+	font-size:12px;
 	font-weight:normal;
 	width:170px;
 	height:15px;
@@ -585,9 +597,35 @@ h6{
 	background:#fff;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#555;
-	font-size:14px;
+	font-size:12px;
 	font-weight:normal;
 	width:230px;
+	height:15px;
+	padding-top:1px;
+	padding-left:2px;
+}
+
+.input_box_very_big{
+	border:1px solid #bebebe;
+	background:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#555;
+	font-size:12px;
+	font-weight:normal;
+	width:340px;
+	height:15px;
+	padding-top:1px;
+	padding-left:2px;
+}
+
+.input_box_very_small{
+	border:1px solid #bebebe;
+	background:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#555;
+	font-size:12px;
+	font-weight:normal;
+	width:60px;
 	height:15px;
 	padding-top:1px;
 	padding-left:2px;
@@ -598,20 +636,19 @@ h6{
 	background:#fff;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#555;
-	font-size:14px;
+	font-size:12px;
 	font-weight:normal;
-	width:60px;
+	width:115px;
 	height:15px;
 	padding-top:1px;
 	padding-left:2px;
 }
-
 .input_box_add{
 	border:1px solid #bebebe;
 	background:#fff;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#555;
-	font-size:14px;
+	font-size:12px;
 	font-weight:normal;
 	width:140px;
 	height:15px;
@@ -646,7 +683,7 @@ h6{
 }
 
 .drop_box_small{
-	* margin-top:1px;
+	margin-top:1px;
 }
 
 .areabox{
@@ -656,7 +693,7 @@ h6{
 	color:#555;
 	font-size:14px;
 	font-weight:normal;
-	width:935px;
+	width:954px;
 	height:50px;
 	padding-top:1px;
 	padding-left:2px;
@@ -819,7 +856,7 @@ h6{
 	
 .tabdiv {
 	float:left;
-	width:928px;
+	width:954px;
 	margin-top: 0px;
 	background: #fff;
 	border: 1px solid #ddd;
@@ -909,10 +946,10 @@ h6{
 	
 .head_tbl{
 	background:#f5f5f5;
-	height:20px;
+	height:17px;
 	color:#666;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
+	font-size:12px;
 	font-weight:bold;
 	padding-left:3px;
 	}
@@ -963,18 +1000,17 @@ h6{
 	text-decoration:none;
 	}
 
-	.logout{
-	float:left; 
-	width:958px; 
-	text-align:right; 
-	padding-right:21px; 
-	padding-top:5px; 
-	font-family:arial; 
-	color:#555; 
-	font-size:11px; 
-	background:#fff;
-	border-left:1px solid rgb(234, 234, 234);
-	border-right:1px solid rgb(234, 234, 234);
+.logout{
+	    float: left;
+            width: 954px;
+            text-align: right;
+            /* padding-right: 21px; */
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-family: arial;
+            color: #555;
+            font-size: 11px;
+            background: #fff;
 	}
 
 #table-3 {

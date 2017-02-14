@@ -227,7 +227,7 @@ include 'classes/admin_class.php';
                         </table>
                     </div>        
                 </div>
-                
+                <div class='block'><img src="images/lnc.jpg"  /></div>
                 <!--BEGIN block two-->
                 <div class="block" style="margin-right:12px; margin-left:12px;">
                     <div class="headings"><!--<img src="images/Briefcase-Medical.png" />-->&nbsp;Investigation Done</div>
