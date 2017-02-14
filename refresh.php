@@ -5,10 +5,10 @@ $PRESCRIPTION_ID = $_GET['PRESCRIPTION_ID'];
 include("inc/config.php");
 
 $sql2 = "select * from precribed_medicine where PRESCRIPTION_ID = '$PRESCRIPTION_ID'";
-$result = mysql_query($sql2) or die(mysql_error());
+$result = mysqli_query($con,$sql2) or die(mysqli_error());
 
 echo "<table width='100%'>";
-while($d = mysql_fetch_object($result)){
+while($d = mysqli_fetch_object($result)){
 	echo "<tr>";
 	echo "<td class='odd_tb'>".$d->MEDICINE_NAME."</td>";
 	echo "<td class='odd_tb'>".$d->MEDICINE_DOSE."</td>";

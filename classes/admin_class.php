@@ -87,37 +87,37 @@ class admin{
         
         $query_getinvestigation_details_from_master = "select * from investigation_master where  investigation_name  = '".$investigation_name."'" ;
 
-        $result = mysql_query($query_getinvestigation_details_from_master) or die(mysql_error());
-        if (mysql_num_rows($result) > 0){
+        $result = mysqli_query($con,$query_getinvestigation_details_from_master) or die(mysqli_error());
+        if (mysqli_num_rows($result) > 0){
             //Investigation exists in Master. Only insert into patient_investigation table
-            $rowresult = mysql_fetch_object($result) or die(mysql_error());
+            $rowresult = mysqli_fetch_object($result) or die(mysqli_error());
             //Get the investigation Id
             $inv_id = $rowresult->ID;
             //Update investigation_master with the updated value
             /*$query_update_into_investigation_master = "update investigation_master set investigation_type = '".$TYPE."', unit = '".$UNIT."'
                                                         where ID = '"+$inv_id+"'";
 
-            mysql_query($query_update_into_investigation_master) or die(mysql_error());*/
+            mysqli_query($con,$query_update_into_investigation_master) or die(mysqli_error());*/
             //update investigation master
-            mysql_query("update investigation_master set  unit = '$unit' where ID ='$inv_id'" );
+            mysqli_query($con,"update investigation_master set  unit = '$unit' where ID ='$inv_id'" );
 
         //INsert into patient_investigation
             $query_insert_into_patient_investigation = "insert into patient_investigation (patient_id, visit_id, investigation_id, value) 
                                                     values ('".$patient_id."','".$visit_id."','".$inv_id."','".$value."')";
-            mysql_query($query_insert_into_patient_investigation) or die(mysql_error());
+            mysqli_query($con,$query_insert_into_patient_investigation) or die(mysqli_error());
         } else {
             //Investigation does not exists in database
             //Insert into investigation_master 
             $query_insert_into_investigation_master = "insert into investigation_master (investigation_name , investigation_type, unit)
                                                         values('".$investigation_name."','".$type."','".$unit."')";
-            mysql_query($query_insert_into_investigation_master) or die(mysql_error());
+            mysqli_query($con,$query_insert_into_investigation_master) or die(mysqli_error());
             //Get the investigation Id
-            $inv_id = mysql_insert_id() or die(mysql_error());
+            $inv_id = mysql_insert_id() or die(mysqli_error());
 
             //INsert into patient_investigation
             $query_insert_into_patient_investigation = "insert into patient_investigation (patient_id, visit_id, investigation_id, value) 
                                                     values ('".$patient_id."','".$visit_id."','".$inv_id."','".$value."')";
-            mysql_query($query_insert_into_patient_investigation) or die(mysql_error());
+            mysqli_query($con,$query_insert_into_patient_investigation) or die(mysqli_error());
 
         }
     }
@@ -125,49 +125,49 @@ class admin{
     function insertUpdateAllergy($prescription_id, $allergy){
         
         $query = "select ALLERGY_ID from allergy_master where allergy_name = '$allergy'";
-        $result = mysql_query($query);
+        $result = mysqli_query($con,$query);
         $id = "";
-        if(mysql_num_rows($result) > 0){
+        if(mysqli_num_rows($result) > 0){
             //Clinical Impression Type exists in the Database. Get the ID
-            while($rs = mysql_fetch_array($result)){
+            while($rs = mysqli_fetch_array($result)){
                 $id = $rs['ALLERGY_ID'];
             }
         } else {
             //Insert into master and then add
             $query = "insert into allergy_master (ALLERGY_NAME) values('$allergy')";
-            mysql_query($query) or die(mysql_error());
+            mysqli_query($con,$query) or die(mysqli_error());
             $id = mysql_insert_id();
         }
         $query1 = "insert into prescribed_allergy(allergy_id, prescription_id) 
                     values('$id' , '$prescription_id')";
-        mysql_query($query1) or die(mysql_error());
+        mysqli_query($con,$query1) or die(mysqli_error());
     }
     
     function insertUpdateSocialHistory($prescription_id, $type){
         
         $query = "select ID from social_history_master where TYPE = '$type'";
-        $result = mysql_query($query);
+        $result = mysqli_query($con,$query);
         $id = "";
-        if(mysql_num_rows($result) > 0){
+        if(mysqli_num_rows($result) > 0){
             //Clinical Impression Type exists in the Database. Get the ID
-            while($rs = mysql_fetch_array($result)){
+            while($rs = mysqli_fetch_array($result)){
                 $id = $rs['ID'];
             }
         } else {
             //Insert into master and then add
             $query = "insert into social_history_master (TYPE, DESCRIPTION) values('$type','$type')";
-            mysql_query($query) or die(mysql_error());
+            mysqli_query($con,$query) or die(mysqli_error());
             $id = mysql_insert_id();
         }
         $query = "insert into prescribed_social_history(social_history_id, prescription_id) 
                     values('$id' , '$prescription_id')";
-        mysql_query($query) or die(mysql_error());
+        mysqli_query($con,$query) or die(mysqli_error());
     }
     function deletePatientInvestigation($investigation_id,$visit_id ){
         
-        mysql_query("delete from patient_investigation 
+        mysqli_query($con,"delete from patient_investigation 
                     where investigation_id = '$investigation_id' 
-                    and visit_id ='$visit_id' ") or die(mysql_error());
+                    and visit_id ='$visit_id' ") or die(mysqli_error());
         
         
         $admin = new admin();
@@ -196,10 +196,10 @@ class admin{
                 )
                 ) and prescription_id = '".$prescription_id."' ";
             
-            $result12 = mysql_query($_QUERY12)or die(mysql_error());
+            $result12 = mysqli_query($con,$_QUERY12)or die(mysqli_error());
             $ci_id = "";
-            if(mysql_num_rows($result12) > 0){
-                while($rs12 = mysql_fetch_array($result12)){
+            if(mysqli_num_rows($result12) > 0){
+                while($rs12 = mysqli_fetch_array($result12)){
                     $ci_id = $rs12['clinical_impression_id'];
                 }
             }
@@ -219,8 +219,8 @@ class admin{
     function getHealthDetailsbyName($name){
         $_QUERY = "select * from patient_health_details_master where NAME = '".$name."'";
         //echo $_QUERY;
-        $result = mysql_query($_QUERY) or die(mysql_error());
-        $obj = mysql_fetch_object($result);
+        $result = mysqli_query($con,$_QUERY) or die(mysqli_error());
+        $obj = mysqli_fetch_object($result);
         
         return $obj;
     }
@@ -229,17 +229,17 @@ class admin{
         $admin = new admin();
         if($mode == 'UPDATE'){
     
-            mysql_query("update patient_health_details 
+            mysqli_query($con,"update patient_health_details 
                         set VALUE = '$cfvalue' where VISIT_ID = '$visit_id' 
-                        and ID  ='$cf_id' ") or die(mysql_error());
+                        and ID  ='$cf_id' ") or die(mysqli_error());
                 if (mysql_affected_rows() > 0){
                     $result =  "<tr><td colspan='3'>". mysql_affected_rows() ." item(s) updated</td></tr>";
                 }
 
             } else if($mode == 'DELETE'){
-                mysql_query("delete from patient_health_details 
+                mysqli_query($con,"delete from patient_health_details 
                         where VISIT_ID = '$visit_id' 
-                        and ID  ='$cf_id' ") or die(mysql_error());
+                        and ID  ='$cf_id' ") or die(mysqli_error());
                 if (mysql_affected_rows() > 0){
                     $result =  "<tr><td colspan='3'>". mysql_affected_rows() ." item(s) deleted</td></tr>";
                 }
@@ -247,55 +247,55 @@ class admin{
 
         if($cf_id == '1' || $cf_id = '2'){
             //Modify BMI
-            $result1 = mysql_query("select a.VALUE from patient_health_details a 
-                    where a.ID = '1' and a.VISIT_ID = '$visit_id'") or die(mysql_error());
+            $result1 = mysqli_query($con,"select a.VALUE from patient_health_details a 
+                    where a.ID = '1' and a.VISIT_ID = '$visit_id'") or die(mysqli_error());
 
-            if(mysql_num_rows($result1) > 0){
-                $obj = mysql_fetch_object($result1);
+            if(mysqli_num_rows($result1) > 0){
+                $obj = mysqli_fetch_object($result1);
                 $height = $obj->VALUE;
             }
-            $result2 = mysql_query("select a.VALUE from patient_health_details a 
-                    where a.ID = '2' and a.VISIT_ID = '$visit_id'") or die(mysql_error());
+            $result2 = mysqli_query($con,"select a.VALUE from patient_health_details a 
+                    where a.ID = '2' and a.VISIT_ID = '$visit_id'") or die(mysqli_error());
 
-            if(mysql_num_rows($result2) > 0){
-                $obj = mysql_fetch_object($result2);
+            if(mysqli_num_rows($result2) > 0){
+                $obj = mysqli_fetch_object($result2);
                 $weight = $obj->VALUE;
             }
 
             if($height != "" && $weight != ""){
                 $bmi = $admin->calcBMI($weight, $height);
 
-                $result_id_f = mysql_query("select * from patient_health_details where ID = '3'") or die(mysql_error());
-                if(mysql_num_rows($result_id_f) > 0 ){
+                $result_id_f = mysqli_query($con,"select * from patient_health_details where ID = '3'") or die(mysqli_error());
+                if(mysqli_num_rows($result_id_f) > 0 ){
                     $query_b = "update patient_health_details set VALUE = '$bmi' where ID ='3' and VISIT_ID = '".$visit_id."'";
                 } else {
                 $query_b = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
                         values('3' , '$bmi', '$visit_id')";
                 }
-                mysql_query($query_b) or die(mysql_error());
+                mysqli_query($con,$query_b) or die(mysqli_error());
             }
         }
         return $result;
     }
     function getPatientDetailsPatientId($patientId){
         $_QUERY = "select * from patient where patient_id = '".$patientId."'";
-        $result = mysql_query($_QUERY) or die(mysql_error());
-        $obj = mysql_fetch_object($result);
+        $result = mysqli_query($con,$_QUERY) or die(mysqli_error());
+        $obj = mysqli_fetch_object($result);
         
         return $obj;
     }
     function getInvestigationFromId($investigation_id){
         $_QUERY = "select * from investigation_master where ID = '".$investigation_id."'";
-        $result = mysql_query($_QUERY) or die(mysql_error());
-        $obj = mysql_fetch_object($result);
+        $result = mysqli_query($con,$_QUERY) or die(mysqli_error());
+        $obj = mysqli_fetch_object($result);
         
         return $obj;
     }
     function getClinicalImpressionfromName($ci_name){
         $_QUERY = "select * from clinical_impression where TYPE = '".$ci_name."'";
         //echo $_QUERY;
-        $result = mysql_query($_QUERY) or die(mysql_error());
-        $obj = mysql_fetch_object($result);
+        $result = mysqli_query($con,$_QUERY) or die(mysqli_error());
+        $obj = mysqli_fetch_object($result);
         
         return $obj;
     }
@@ -305,53 +305,53 @@ class admin{
         $query = "select ID from patient_health_details_master where NAME = '$cfname'";
 
 
-        $result = mysql_query($query);
+        $result = mysqli_query($con,$query);
         $id = "";
         $height = "";
         $weight = "";
         $bmi = "";
-        if(mysql_num_rows($result) > 0){
+        if(mysqli_num_rows($result) > 0){
             //Clinical Impression Type exists in the Database. Get the ID
-            while($rs = mysql_fetch_array($result)){
+            while($rs = mysqli_fetch_array($result)){
                 $id = $rs['ID'];
             }
         } else {
             //Insert into master and then add
             $query = "insert into patient_health_details_master (NAME) values('$cfname')";
-            mysql_query($query);
+            mysqli_query($con,$query);
             $id = mysql_insert_id();
         }
         $query = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
                     values('$id' , '$cfvalue', '$visit_id')";
-        mysql_query($query);
+        mysqli_query($con,$query);
 
-        $result1 = mysql_query("select a.VALUE from patient_health_details a 
-                where a.ID = '1' and a.VISIT_ID = '$visit_id'") or die(mysql_error());
+        $result1 = mysqli_query($con,"select a.VALUE from patient_health_details a 
+                where a.ID = '1' and a.VISIT_ID = '$visit_id'") or die(mysqli_error());
 
-        if(mysql_num_rows($result1) > 0){
-            $obj = mysql_fetch_object($result1);
+        if(mysqli_num_rows($result1) > 0){
+            $obj = mysqli_fetch_object($result1);
             $height = $obj->VALUE;
         }
-        $result2 = mysql_query("select a.VALUE from patient_health_details a 
-                where a.ID = '2' and a.VISIT_ID = '$visit_id'") or die(mysql_error());
+        $result2 = mysqli_query($con,"select a.VALUE from patient_health_details a 
+                where a.ID = '2' and a.VISIT_ID = '$visit_id'") or die(mysqli_error());
 
-        if(mysql_num_rows($result2) > 0){
-            $obj = mysql_fetch_object($result2);
+        if(mysqli_num_rows($result2) > 0){
+            $obj = mysqli_fetch_object($result2);
             $weight = $obj->VALUE;
         }
 
         if($height != "" && $weight != ""){
             $bmi = $admin->calcBMI($weight, $height);
-            $result_id_f = mysql_query("select * from patient_health_details where 
-                ID = '3' and VISIT_ID = '$visit_id'") or die(mysql_error());
-            if(mysql_num_rows($result_id_f) > 0 ){
+            $result_id_f = mysqli_query($con,"select * from patient_health_details where 
+                ID = '3' and VISIT_ID = '$visit_id'") or die(mysqli_error());
+            if(mysqli_num_rows($result_id_f) > 0 ){
                 $query_b = "update patient_health_details set VALUE = '$bmi' where 
                 ID ='3' and VISIT_ID = '".$visit_id."'";
             } else {
             $query_b = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
                     values('3' , '$bmi', '$visit_id')";
             }
-            mysql_query($query_b) or die(mysql_error());
+            mysqli_query($con,$query_b) or die(mysqli_error());
         }
         
     }
@@ -359,91 +359,91 @@ class admin{
     function insertUpdateClinicalImpression($prescription_id, $type){
         
         $query = "select ID from clinical_impression where TYPE = '$type'";
-        $result = mysql_query($query);
+        $result = mysqli_query($con,$query);
         $id = "";
-        if(mysql_num_rows($result) > 0){
+        if(mysqli_num_rows($result) > 0){
             //Clinical Impression Type exists in the Database. Get the ID
-            while($rs = mysql_fetch_array($result)){
+            while($rs = mysqli_fetch_array($result)){
                 $id = $rs['ID'];
             }
         } else {
             //Insert into master and then add
             $query = "insert into clinical_impression (TYPE, DESCRIPTION) values('$type','$type')";
-            mysql_query($query) or die(mysql_error());
+            mysqli_query($con,$query) or die(mysqli_error());
             $id = mysql_insert_id();
         }
         $query = "insert into prescribed_cf(clinical_impression_id, prescription_id) 
                     values('$id' , '$prescription_id')";
-        mysql_query($query) or die(mysql_error());
+        mysqli_query($con,$query) or die(mysqli_error());
     }
     
     function insertUpdatepastMedicalHistory($prescription_id, $type){
         
         $query = "select ID from past_medical_history_master where TYPE = '$type'";
-        $result = mysql_query($query);
+        $result = mysqli_query($con,$query);
         $id = "";
-        if(mysql_num_rows($result) > 0){
+        if(mysqli_num_rows($result) > 0){
             //Clinical Impression Type exists in the Database. Get the ID
-            while($rs = mysql_fetch_array($result)){
+            while($rs = mysqli_fetch_array($result)){
                 $id = $rs['ID'];
             }
         } else {
             //Insert into master and then add
             $query = "insert into past_medical_history_master (TYPE, DESCRIPTION) values('$type','$type')";
-            mysql_query($query) or die(mysql_error());
+            mysqli_query($con,$query) or die(mysqli_error());
             $id = mysql_insert_id();
         }
         $query = "insert into prescribed_past_med_history(clinical_impression_id, prescription_id) 
                     values('$id' , '$prescription_id')";
-        mysql_query($query) or die(mysql_error());
+        mysqli_query($con,$query) or die(mysqli_error());
     }
     
     function deleteClinicalImpression($prescription_id,$ci_id){
         //$message = "";
-        mysql_query("delete from prescribed_cf 
+        mysqli_query($con,"delete from prescribed_cf 
              where prescription_id = '$prescription_id' 
-             and clinical_impression_id  ='$ci_id' ") or die(mysql_error());
+             and clinical_impression_id  ='$ci_id' ") or die(mysqli_error());
         
         
     }
     function deleteAllergy($prescription_id,$allergy_id){
         //$message = "";
-        mysql_query("delete from prescribed_allergy 
+        mysqli_query($con,"delete from prescribed_allergy 
              where prescription_id = '$prescription_id' 
-             and ALLERGY_ID  ='$allergy_id' ") or die(mysql_error());
+             and ALLERGY_ID  ='$allergy_id' ") or die(mysqli_error());
         
         
     }
 	
 	function deletePastMedicalHistory($prescription_id,$ci_id){
         //$message = "";
-        mysql_query("delete from prescribed_past_med_history 
+        mysqli_query($con,"delete from prescribed_past_med_history 
              where prescription_id = '$prescription_id' 
-             and clinical_impression_id  ='$ci_id' ") or die(mysql_error());
+             and clinical_impression_id  ='$ci_id' ") or die(mysqli_error());
         
         
     }
     function getPrescriptionFromVisitId($visitid){
         $_QUERY="select * from prescription where VISIT_ID = '".$visitid."'";
         
-        $result = mysql_query($_QUERY) or die(mysql_error());
-        $obj = mysql_fetch_object($result);
+        $result = mysqli_query($con,$_QUERY) or die(mysqli_error());
+        $obj = mysqli_fetch_object($result);
         
         return $obj;
     }
     function getClinicalImpressionFromId($ci_id){
         $_QUERY="select * from clinical_impression where ID = '".$ci_id."'";
         
-        $result = mysql_query($_QUERY) or die(mysql_error());
-        $obj = mysql_fetch_object($result);
+        $result = mysqli_query($con,$_QUERY) or die(mysqli_error());
+        $obj = mysqli_fetch_object($result);
         
         return $obj;
     }
     function getVisitFromId($visit_id){
         $_QUERY="select * from visit where VISIT_ID  = '".$visit_id."'";
         
-        $result = mysql_query($_QUERY) or die(mysql_error());
-        $obj = mysql_fetch_object($result);
+        $result = mysqli_query($con,$_QUERY) or die(mysqli_error());
+        $obj = mysqli_fetch_object($result);
         
         return $obj;
     }

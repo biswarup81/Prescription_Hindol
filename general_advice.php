@@ -13,10 +13,10 @@ if($status == 'SAVE'){ ?>
                         WHERE a.PRESCRIPTION_ID = '$PRESCRIPTION_ID' and a.STATUS = 'SAVE'";
                             //echo $q5;
                     
-                            $result = mysql_query($q11) or die(mysql_error()); 
+                            $result = mysqli_query($con,$q11) or die(mysqli_error()); 
                             
 
-                            while($rs = mysql_fetch_array($result)) {
+                            while($rs = mysqli_fetch_array($result)) {
             ?>
                 <?php echo $rs['ANY_OTHER_DETAILS'] ?>, &nbsp; &nbsp;
             <?php    } ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once "../inc/config.php";
+require_once "../datacon.php";
 
 $invest_name = $_GET["invest_name"];
 
@@ -9,8 +9,8 @@ $invest_name = $_GET["invest_name"];
 
 $sql1 = "select * from investigation_master where investigation_name like '".$invest_name."%' 
         and STATUS = 'ACTIVE' ";
-$result1 = mysql_query($sql1)or die(mysql_error());
-$no = mysql_num_rows($result1);
+$result1 = mysqli_query($con,$sql1)or die(mysqli_error());
+$no = mysqli_num_rows($result1);
 echo "<table width='888' border='0' cellspacing='0' cellpadding='0'>
         <tr>
         <td class='bg_tble'>                    
@@ -24,7 +24,7 @@ if($no > 0){
         </tr>";
         
         
-        while($d1 = mysql_fetch_array($result1)){
+        while($d1 = mysqli_fetch_array($result1)){
            echo "<tr>
                 <td class='odd'>".$d1['investigation_name']."</td>
                 <td class='odd'>".$d1['investigation_type']."</td>

@@ -8,11 +8,10 @@ session_start();
       $passwordsc = "";
       $dbName = "myepresc_hindol";
 
-      $con = mysql_connect($hostname,$username,$passwordsc);
+      $con = mysqli_connect($hostname,$username,$passwordsc,$dbName);
+
 		if (!$con)
 		  {
-		  die('Could not connect: ' . mysql_error());
+		  die('Could not connect: ' . mysqli_error());
 		  }
-	mysql_select_db($dbName, $con);
-
 ?>

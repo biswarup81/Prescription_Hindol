@@ -95,22 +95,22 @@ $visit_id = "";
 $dob = "";
 $age = "";
 /* GET THE PATIENT DETAILS */
-$result = mysql_query("SELECT * FROM patient where patient_first_name='$_POST[fname]' and patient_last_name = '$_POST[lname]' and patient_cell_num = '$_POST[cellnum]'");
+$result = mysqli_query($con,"SELECT * FROM patient where patient_first_name='$_POST[fname]' and patient_last_name = '$_POST[lname]' and patient_cell_num = '$_POST[cellnum]'");
 
-if( mysql_num_rows($result) == 0 ){
+if( mysqli_num_rows($result) == 0 ){
 	/* INSERT INTO PATIENT */
 	$sql="INSERT INTO patient (patient_first_name, patient_last_name, patient_address, patient_city, patient_dob, patient_cell_num, patient_alt_cell_num, patient_email, data_entry_date) VALUES ('$_POST[fname]', '$_POST[lname]','$_POST[addr]','$_POST[city]','$_POST[dob]','$_POST[cellnum]','$_POST[altcellnum]','$_POST[email]', sysdate() )";
 
-	if (!mysql_query($sql,$con))
+	if (!mysqli_query($con,$sql,$con))
 	  {
-	  die('Error: ' . mysql_error());
+	  die('Error: ' . mysqli_error());
 	  }
 
 } 
 
-$result = mysql_query("SELECT * FROM patient where patient_first_name='$_POST[fname]' and patient_last_name = '$_POST[lname]' and patient_cell_num = '$_POST[cellnum]'");
+$result = mysqli_query($con,"SELECT * FROM patient where patient_first_name='$_POST[fname]' and patient_last_name = '$_POST[lname]' and patient_cell_num = '$_POST[cellnum]'");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
   $patient_id =  $row['patient_id'] ;
   $fname  = $row['patient_first_name'];
@@ -126,21 +126,21 @@ while($row = mysql_fetch_array($result))
 
 $sql= "insert into VISIT(PATIENT_ID,VISIT_DATE,APPOINTMENT_TO_DOC_NAME) values
 ('$patient_id', sysdate() , 'Dr. Soumyabrata Roy Choudhuri' )";
-if (!mysql_query($sql,$con))
+if (!mysqli_query($con,$sql,$con))
 {
-  die('Error: ' . mysql_error());
+  die('Error: ' . mysqli_error());
 }
 
 /* GET VISIT NUMBER */
-$result = mysql_query("SELECT count( patient_id ) FROM visit WHERE patient_id = '$patient_id' ");
-while($row = mysql_fetch_array($result))
+$result = mysqli_query($con,"SELECT count( patient_id ) FROM visit WHERE patient_id = '$patient_id' ");
+while($row = mysqli_fetch_array($result))
   {
   $visit =  $row['count( patient_id )'] ;
 }
 
 /* Get maximum visit number */
-$result = mysql_query("SELECT max( visit_id ) FROM visit");
-while($row = mysql_fetch_array($result))
+$result = mysqli_query($con,"SELECT max( visit_id ) FROM visit");
+while($row = mysqli_fetch_array($result))
   {
   $visit_id =  $row['max( visit_id )'] ;
 }

@@ -7,8 +7,8 @@ if (!$q) return;
 $sql = "SELECT DISTINCT ( investigation_type )
 		FROM investigation_master
 		GROUP BY investigation_type";
-$rsd = mysql_query($sql);
-while($rs = mysql_fetch_array($rsd)) {
+$rsd = mysqli_query($con,$sql);
+while($rs = mysqli_fetch_array($rsd)) {
 	$cname = $rs['investigation_type'];
 	echo "$cname\n";
 }

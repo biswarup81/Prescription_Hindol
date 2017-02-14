@@ -17,10 +17,10 @@ if (mysql_affected_rows() > 0){
 $q15 = "SELECT b.type, b.ID FROM prescribed_past_med_history a, past_medical_history_master b
                 WHERE a.clinical_impression_id = b.id
                 AND a.prescription_id = '$PRESCRIPTION_ID'";
-        $rsd1 = mysql_query($q15);
+        $rsd1 = mysqli_query($con,$q15);
 
-        if(mysql_num_rows($rsd1) > 0){
-            while($rs = mysql_fetch_array($rsd1)) {
+        if(mysqli_num_rows($rsd1) > 0){
+            while($rs = mysqli_fetch_array($rsd1)) {
                 $type = $rs['type'];
                 $cf_d = $rs['ID'];
                 echo "<tr><td style='width: 180px;'>".$type."<a id='minus7' href='#' ></a></td>".

@@ -11,8 +11,8 @@ $sql1 = "SELECT a.PRESCRIPTION_ID, a.VISIT_ID, b.PATIENT_ID , b.VISIT_DATE, p.pa
 		b.patient_id = p.patient_id and
 		b.VISITED = 'yes' and
         b.PATIENT_ID = '".$patient_id."' order by b.VISIT_DATE asc";
-$result1 = mysql_query($sql1)or die(mysql_error());
-$no = mysql_num_rows($result1);
+$result1 = mysqli_query($con,$sql1)or die(mysqli_error());
+$no = mysqli_num_rows($result1);
 
 echo "<table width='888' border='0' cellspacing='0' cellpadding='0'>
         <tr>
@@ -31,7 +31,7 @@ if($no > 0){
         
         </tr>";
 
-while($d1 = mysql_fetch_array($result1)){
+while($d1 = mysqli_fetch_array($result1)){
     echo "<tr>";
 	 echo "<td>".$d1['patient_first_name']." ".$d1['patient_last_name']."</td>";
     echo "<td>".date("d / m / Y", strtotime($d1['VISIT_DATE']))."</td>";
@@ -40,9 +40,9 @@ while($d1 = mysql_fetch_array($result1)){
         from prescribed_cf a, clinical_impression b
         where a.clinical_impression_id 	 = b.ID and
         a.prescription_id = '".$d1['PRESCRIPTION_ID']."' order by b.TYPE asc";
-    $result2 = mysql_query($sql2)or die(mysql_error());
+    $result2 = mysqli_query($con,$sql2)or die(mysqli_error());
     echo "<table>";
-    while($d2 = mysql_fetch_array($result2)){
+    while($d2 = mysqli_fetch_array($result2)){
         echo"<tr>";
         echo "<td>".$d2['TYPE']."</td>";
         echo "</tr>";
@@ -55,9 +55,9 @@ while($d1 = mysql_fetch_array($result1)){
         from patient_investigation a, investigation_master b
         where a.investigation_id = b.ID and
         a.visit_id = '".$d1['VISIT_ID']."' order by b.investigation_name asc";
-    $result3 = mysql_query($sql3)or die(mysql_error());
+    $result3 = mysqli_query($con,$sql3)or die(mysqli_error());
     echo "<table>";
-    while($d3 = mysql_fetch_array($result3)){
+    while($d3 = mysqli_fetch_array($result3)){
         echo"<tr>";
         echo "<td>".$d3['investigation_name']."  ".$d3['value']."</td>";
         echo "</tr>";
@@ -69,9 +69,9 @@ while($d1 = mysql_fetch_array($result1)){
     $sql4 = "SELECT a.MEDICINE_NAME
         from precribed_medicine a
         where a.PRESCRIPTION_ID = '".$d1['PRESCRIPTION_ID']."' order by a.MEDICINE_NAME asc";
-    $result4 = mysql_query($sql4)or die(mysql_error());
+    $result4 = mysqli_query($con,$sql4)or die(mysqli_error());
     echo "<table>";
-    while($d4 = mysql_fetch_array($result4)){
+    while($d4 = mysqli_fetch_array($result4)){
         echo"<tr>";
         echo "<td>".$d4['MEDICINE_NAME']."</td>";
         echo "</tr>";
@@ -109,8 +109,8 @@ ORDER BY d.patient_first_name ASC";
 //echo $sql1;
 
 //$sql1 = "select * from patient where != ''".$where;
-$result1 = mysql_query($sql1)or die(mysql_error());
-$no = mysql_num_rows($result1);
+$result1 = mysqli_query($con,$sql1)or die(mysqli_error());
+$no = mysqli_num_rows($result1);
 echo "<table width='888' border='0' cellspacing='0' cellpadding='0'>
         <tr>
         <td class='bg_tble'>                    
@@ -136,7 +136,7 @@ if($no > 0){
         </tr>";
         
         
-        while($d1 = mysql_fetch_array($result1)){
+        while($d1 = mysqli_fetch_array($result1)){
            echo "<tr>
                 <td class='odd'>".$d1['GENDER']."</td>
                 <!--<td class='odd'><a href='processData.php?patient_id=".$d1['patient_id']."' class='vlink'>".$d1['patient_id']."</a></td> -->

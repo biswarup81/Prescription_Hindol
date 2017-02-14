@@ -33,8 +33,8 @@ include ('./datacon.php');
                     
                     $sql1 = "select * from patient where patient_id = '".$patientId."'";
     
-                    $result = mysql_query($sql1) or die(mysql_error());
-                    while( $rs = mysql_fetch_array($result)){ ?>
+                    $result = mysqli_query($con,$sql1) or die(mysqli_error());
+                    while( $rs = mysqli_fetch_array($result)){ ?>
                     	<span><p>Gender</p>
                             <select name="gender" value="<?php echo $rs['GENDER']?>" class="drop_box_small" style="width:80px;" >
                                 <option>Male</option>
@@ -93,7 +93,7 @@ function modify(){
                     patient_last_name = '$lname' , patient_address = '$addr' , 
                     patient_city = '$city' , patient_dob = '$dob' , patient_cell_num = '$cellnum' ,
                     patient_alt_cell_num = '$altcellnum' , patient_email = '$email' where patient_id = '".$patient_id."'";
-        mysql_query($sql1) or die(mysql_error());
+        mysqli_query($con,$sql1) or die(mysqli_error());
         //echo $sql1;
         $_SESSION['form1']['message'] = "Updated Successfully";
 

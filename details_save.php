@@ -12,23 +12,23 @@
  
  /*$query = "select * from patient_health_details_master where NAME = 'BMI'";
  
- $rs = mysql_fetch_object(mysql_query($query));
+ $rs = mysqli_fetch_object(mysqli_query($con,$query));
  
  $bmi_id = $rs->ID;
  $query = "select * from patient_health_details_master where NAME = 'WEIGHT'";
  
- $rs = mysql_fetch_object(mysql_query($query));
+ $rs = mysqli_fetch_object(mysqli_query($con,$query));
  
  $weight_id = $rs->ID;
  $query = "select * from patient_health_details_master where NAME = 'HEIGHT'";
  
- $rs = mysql_fetch_object(mysql_query($query));
+ $rs = mysqli_fetch_object(mysqli_query($con,$query));
  
  $height_id = $rs->ID; */
 
 /* $sql2 = "insert into visit (PATIENT_ID, VISIT_DATE, APPOINTMENT_TO_DOC_NAME) values('$patientid',NOW(),'')";
 
- mysql_query($sql2) or die(mysql_error());
+ mysqli_query($con,$sql2) or die(mysqli_error());
   $id = mysql_insert_id();*/
   
     
@@ -44,24 +44,24 @@
  
  /*$query = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
             values('2' , '$weight', '$visit_id2')";
- mysql_query($query);
+ mysqli_query($con,$query);
  
  $query = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
             values('1' , '$height', '$visit_id2')";
- mysql_query($query);
+ mysqli_query($con,$query);
  
  $query = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
             values('3' , '$bmi', '$visit_id2')";
- mysql_query($query);*/
+ mysqli_query($con,$query);*/
  
  
- //mysql_query($sql) or die(mysql_error());
+ //mysqli_query($con,$sql) or die(mysqli_error());
 
     header("location:visit_list.php");
 /*echo $sql;
-	if (!mysql_query($sql,$con))
+	if (!mysqli_query($con,$sql,$con))
 	  {
-	  die('Error: ' . mysql_error());
+	  die('Error: ' . mysqli_error());
 	  }else{
 		  header("location:visit_list.php");
 	  }*/

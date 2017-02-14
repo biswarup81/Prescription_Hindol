@@ -12,8 +12,8 @@ FROM patient a, visit b
 WHERE b.PATIENT_ID = a.patient_id
 AND a.patient_id = '$patient_id'";
 
-$r1 = mysql_query($query) or die(mysql_error());
-        $d1 = mysql_fetch_object($r1) ;
+$r1 = mysqli_query($con,$query) or die(mysqli_error());
+        $d1 = mysqli_fetch_object($r1) ;
         
 ?>
 <!-- Patient Area Starts -->

@@ -8,16 +8,16 @@ $cfvalue = str_replace("PLUS","+",$_GET['cfvalue']);
 echo '<table>';
 if($mode == 'UPDATE'){
     
-mysql_query("update patient_health_details 
+mysqli_query($con,"update patient_health_details 
              set VALUE = '$cfvalue' where VISIT_ID = '$visit_id' 
-             and ID  ='$cf_id' ") or die(mysql_error());
+             and ID  ='$cf_id' ") or die(mysqli_error());
     if (mysql_affected_rows() > 0){
         echo "<tr><td colspan='3'>". mysql_affected_rows() ." item(s) updated</td></tr>";
     }
 } else if($mode == 'DELETE'){
-    mysql_query("update patient_health_details 
+    mysqli_query($con,"update patient_health_details 
              set VALUE = '$cfvalue' where VISIT_ID = '$visit_id' 
-             and ID  ='$cf_id' ") or die(mysql_error());
+             and ID  ='$cf_id' ") or die(mysqli_error());
     if (mysql_affected_rows() > 0){
         echo "<tr><td colspan='3'>". mysql_affected_rows() ." item(s) deleted</td></tr>";
     }
@@ -31,10 +31,10 @@ $q15 = "select a.VALUE, b.NAME, a.ID from
                             where
                             a.ID = b.ID
                             and a.VISIT_ID = '$visit_id'";
-$rsd1 = mysql_query($q15);
+$rsd1 = mysqli_query($con,$q15);
 
 
-    while($rs = mysql_fetch_array($rsd1)) {
+    while($rs = mysqli_fetch_array($rsd1)) {
             $name = $rs['NAME'];
             $value = $rs['VALUE'];
             $id = $rs['ID'];

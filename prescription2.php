@@ -77,13 +77,13 @@ $patient_id = $_GET['patient_id'];
 $visit_id = $_GET['VISIT_ID'];
 
 
-//$r2 = mysql_query("insert into prescription(VISIT_ID, REFERRED_TO, DIET, NEXT_VISIT, ANY_OTHER_DETAILS) values('', '','', '', '')") or die(mysql_error());
+//$r2 = mysqli_query($con,"insert into prescription(VISIT_ID, REFERRED_TO, DIET, NEXT_VISIT, ANY_OTHER_DETAILS) values('', '','', '', '')") or die(mysqli_error());
 //$PRESCRIPTION_ID = mysql_insert_id();
 $PRESCRIPTION_ID = $_GET['PRESCRIPTION_ID'];
 
 /*if(!empty($_GET['m_id'])){
 	$id = $_GET['m_id'];
-	mysql_query("delete from precribed_medicine where MEDICINE_ID = '$id'") or die(mysql_error());
+	mysqli_query($con,"delete from precribed_medicine where MEDICINE_ID = '$id'") or die(mysqli_error());
 	
 }*/
 ?>
@@ -94,7 +94,7 @@ $PRESCRIPTION_ID = $_GET['PRESCRIPTION_ID'];
 <?php
 
 
-//$r1 = mysql_query("select * from patient where patient_id = '$patient_id'") or die(mysql_error());
+//$r1 = mysqli_query($con,"select * from patient where patient_id = '$patient_id'") or die(mysqli_error());
 
 $query = "SELECT a.patient_id, a.GENDER, a.patient_first_name, a.patient_last_name, a.patient_name,
 a.patient_address, a.patient_city, a.patient_dob, a.patient_cell_num, a.patient_alt_cell_num, a.age,
@@ -105,10 +105,10 @@ WHERE b.PATIENT_ID = a.patient_id
 AND a.patient_id = '$patient_id'
 AND b.visited = 'no'";
 
-$r1 = mysql_query($query) or die(mysql_error());
-        $d1 = mysql_fetch_object($r1) ;
-//$r2 = mysql_query("select * from visit where PATIENT_ID = '$patient_id'");
-//$n2 = mysql_num_rows($r2);
+$r1 = mysqli_query($con,$query) or die(mysqli_error());
+        $d1 = mysqli_fetch_object($r1) ;
+//$r2 = mysqli_query($con,"select * from visit where PATIENT_ID = '$patient_id'");
+//$n2 = mysqli_num_rows($r2);
 ?>
 <!--BEGIN wrapper-->
         <div id="wrapper">
@@ -229,13 +229,13 @@ $r1 = mysql_query($query) or die(mysql_error());
                     $q11 = "SELECT * FROM precribed_medicine WHERE PRESCRIPTION_ID = '".$PRESCRIPTION_ID."'";
                             //echo $q5;
                     
-                            $result = mysql_query($q11) or die(mysql_error()); 
+                            $result = mysqli_query($con,$q11) or die(mysqli_error()); 
                     ?>
                    
                     <div  id="medicine" colspan="5">
                        
                         <table id="table-3"> 
-                        <?php while($rs = mysql_fetch_array($result)) { ?>
+                        <?php while($rs = mysqli_fetch_array($result)) { ?>
 
                             <tr>
                                 <td>

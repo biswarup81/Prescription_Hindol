@@ -86,33 +86,33 @@ include "datacon.php";
 $patient_id = $_GET['patient_id'];
 
 // For show the Visit No on the top right.
-$r2 = mysql_query("select * from visit where PATIENT_ID = '$patient_id'") or die(mysql_error());
-$n2 = mysql_num_rows($r2);
+$r2 = mysqli_query($con,"select * from visit where PATIENT_ID = '$patient_id'") or die(mysqli_error());
+$n2 = mysqli_num_rows($r2);
 
 // For check if the row is exist or not in the below table
 $sql0 = "select * from patient_health_details_by_receptionist where patient_id = '$patient_id'";
-$r0 = mysql_query($sql0) or die(mysql_error());
-$n0 = mysql_num_rows($r0);
+$r0 = mysqli_query($con,$sql0) or die(mysqli_error());
+$n0 = mysqli_num_rows($r0);
 if($n0 < 1){
-	$d2 = mysql_fetch_array($r2) or die(mysql_error());
-	mysql_query("insert into patient_health_details_by_receptionist (patient_id, VISIT_ID) values('$patient_id','$d2[VISIT_ID]')");
+	$d2 = mysqli_fetch_array($r2) or die(mysqli_error());
+	mysqli_query($con,"insert into patient_health_details_by_receptionist (patient_id, VISIT_ID) values('$patient_id','$d2[VISIT_ID]')");
 }
 
-$sql1 = mysql_query("select * from patient where patient_id = '$patient_id'") or die(mysql_error());
-$d1 = mysql_fetch_object($sql1) or die(mysql_error());
+$sql1 = mysqli_query($con,"select * from patient where patient_id = '$patient_id'") or die(mysqli_error());
+$d1 = mysqli_fetch_object($sql1) or die(mysqli_error());
 
 
 $sql2 = "select * from patient_health_details_by_receptionist where patient_id = '$patient_id' order by VISIT_ID desc limit 0,1";
 
-$result2 = mysql_query($sql2) or die(mysql_error());
-$d2 = mysql_fetch_object($result2) or die(mysql_error());
+$result2 = mysqli_query($con,$sql2) or die(mysqli_error());
+$d2 = mysqli_fetch_object($result2) or die(mysqli_error());
 
 
 
 // For get the visit Id 
 $sql3 = "select * from patient_health_details_by_receptionist where patient_id='$patient_id' order by VISIT_ID desc limit 0,1";
-$r3 = mysql_query($sql3) or die(mysql_error());
-$d3 = mysql_fetch_array($r3) or die(mysql_error());
+$r3 = mysqli_query($con,$sql3) or die(mysqli_error());
+$d3 = mysqli_fetch_array($r3) or die(mysqli_error());
 $visit_id = $d3['VISIT_ID']+1;
 
 

@@ -10,23 +10,23 @@ $VISIT_ID = $_GET['VISIT_ID'];
 include("inc/config.php");
 
 $sql0 = "select * from medicine_master where MEDICINE_NAME = '$medicine_name'";
-$result0 = mysql_query($sql0) or die(mysql_error());
-if(mysql_num_rows($result0) == 0){
-mysql_query("insert into medicine_master(MEDICINE_NAME, MEDICINE_DIRECTION, MEDICINE_ENTRY_DATE_TIME) 
-			values('$medicine_name', '$direction', NOW())") or die(mysql_error());
+$result0 = mysqli_query($con,$sql0) or die(mysqli_error());
+if(mysqli_num_rows($result0) == 0){
+mysqli_query($con,"insert into medicine_master(MEDICINE_NAME, MEDICINE_DIRECTION, MEDICINE_ENTRY_DATE_TIME) 
+			values('$medicine_name', '$direction', NOW())") or die(mysqli_error());
 }
 
 
 $sql3 = "insert into precribed_medicine (PRESCRIPTION_ID, MEDICINE_NAME, MEDICINE_DIRECTION, MEDICINE_DOSE, MEDICINE_TIMING) 
 								values('$PRESCRIPTION_ID','$medicine_name', '$direction', '$dose', '$timing')";
-mysql_query($sql3) or die(mysql_error());
+mysqli_query($con,$sql3) or die(mysqli_error());
 
 
 $sql2 = "select * from precribed_medicine where PRESCRIPTION_ID = '$PRESCRIPTION_ID'";
-$result = mysql_query($sql2) or die(mysql_error());
+$result = mysqli_query($con,$sql2) or die(mysqli_error());
 
 echo "<table width='100%'>";
-while($d = mysql_fetch_object($result)){
+while($d = mysqli_fetch_object($result)){
 	echo "<tr>";
 	echo "<td class='odd_tb' width='400'>".$d->MEDICINE_NAME."</td>";
 	echo "<td class='odd_tb' align='center' width='149'>".$d->MEDICINE_DOSE."</td>";

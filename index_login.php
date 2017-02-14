@@ -14,11 +14,11 @@ if(isset($_REQUEST['action'])){
         $pass=stripslashes($_POST['password']);
 
         $sql = "select * from user where user_name = '$uname' and user_password = '$pass'";
-        $r = mysql_query($sql) or die(mysql_error());
-        $d = mysql_fetch_object($r) ;
+        $r = mysqli_query($con,$sql) or die(mysqli_error());
+        $d = mysqli_fetch_object($r) ;
 
         
-        if(mysql_num_rows($r) > 0){
+        if(mysqli_num_rows($r) > 0){
             $user_type = $d->label;
             $user_name = $d->user_name;
             $_SESSION['user_name'] = $user_name;

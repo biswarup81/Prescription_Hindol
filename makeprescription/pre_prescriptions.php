@@ -16,9 +16,9 @@
 
 
                         //echo $q5;
-                        $r5 = mysql_query($query) or die(mysql_error());
-                        if(mysql_num_rows($r5) > 0){
-                            while($d5 = mysql_fetch_array($r5)) {
+                        $r5 = mysqli_query($con,$query) or die(mysqli_error());
+                        if(mysqli_num_rows($r5) > 0){
+                            while($d5 = mysqli_fetch_array($r5)) {
                                 $lastPrescription = $d5['prescription_id'] ;
         ?>
     <table >

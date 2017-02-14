@@ -5,8 +5,8 @@ $q = strtolower($_GET["q"]);
 if (!$q) return;
 
 $sql = "select * from dose_direction where DIRECTION LIKE '$q%'";
-$rsd = mysql_query($sql);
-while($rs = mysql_fetch_array($rsd)) {
+$rsd = mysqli_query($con,$sql);
+while($rs = mysqli_fetch_array($rsd)) {
 	$cname = $rs['DIRECTION'];
 	echo "$cname\n";
 }

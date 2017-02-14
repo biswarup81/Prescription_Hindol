@@ -48,7 +48,7 @@ function setDownloadAsHeader($filename) {
     header('Content-disposition: attachment; filename=' . $filename);
     return true;
 }
-require_once "../inc/config.php";
+require_once "../datacon.php";
 
 /*$mode = $_GET["MODE"];
 
@@ -83,7 +83,7 @@ if(isset($_GET['MEDICINE_NAME']) ){
 			v.patient_id = p.patient_id";
 }
 
-$result = mysql_query($sql1);
+$result = mysqli_query($con,$sql1);
 csvToExcelDownloadFromResult($result);
 
 ?>

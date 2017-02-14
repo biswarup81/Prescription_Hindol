@@ -13,10 +13,10 @@ if($status == 'SAVE'){ ?>
                         AND a.PRESCRIPTION_ID = b.PRESCRIPTION_ID";
                             //echo $q5;
                     
-                            $result = mysql_query($q11) or die(mysql_error()); 
+                            $result = mysqli_query($con,$q11) or die(mysqli_error()); 
                             
 
-                            while($rs = mysql_fetch_array($result)) {
+                            while($rs = mysqli_fetch_array($result)) {
             ?>
                 <?php echo date("d / m / Y", strtotime($rs['LMP_DATE'])); ?> &nbsp; &nbsp;
             <?php    } ?>

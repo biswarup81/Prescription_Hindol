@@ -30,13 +30,13 @@ function func_print()
 include "datacon.php";
 include 'classes/admin_class.php';
 
-//$r2 = mysql_query("insert into prescription(VISIT_ID, REFERRED_TO, DIET, NEXT_VISIT, ANY_OTHER_DETAILS) values('', '','', '', '')") or die(mysql_error());
+//$r2 = mysqli_query($con,"insert into prescription(VISIT_ID, REFERRED_TO, DIET, NEXT_VISIT, ANY_OTHER_DETAILS) values('', '','', '', '')") or die(mysqli_error());
 //$PRESCRIPTION_ID = mysql_insert_id();
 
 
 /*if(!empty($_GET['m_id'])){
 	$id = $_GET['m_id'];
-	mysql_query("delete from precribed_medicine where MEDICINE_ID = '$id'") or die(mysql_error());
+	mysqli_query($con,"delete from precribed_medicine where MEDICINE_ID = '$id'") or die(mysqli_error());
 	
 }*/
 ?>
@@ -60,8 +60,8 @@ include 'classes/admin_class.php';
     $weight = 0;
     $height = 0;
     //update patient_health_details BMI Value
-    $result3 = mysql_query("select * from patient_health_details where ID IN('1','2') and VISIT_ID = '$VISIT_ID'");
-    while($rs5 = mysql_fetch_array($result3)){
+    $result3 = mysqli_query($con,"select * from patient_health_details where ID IN('1','2') and VISIT_ID = '$VISIT_ID'");
+    while($rs5 = mysqli_fetch_array($result3)){
         if($rs5['ID'] == 1){
             $height = $rs5['VALUE'];
         } else if ($rs5['ID'] == 2){
@@ -76,11 +76,11 @@ include 'classes/admin_class.php';
         $udateQueryforph = "insert into patient_health_details (ID, VALUE,VISIT_ID) 
                             values ('3','$bmi','$VISIT_ID')";
 
-        mysql_query($udateQueryforph);
+        mysqli_query($con,$udateQueryforph);
     }
     
-    mysql_query("update prescription set VISIT_ID = '$VISIT_ID',DIET = '$diet', NEXT_VISIT = '$next_visit', 
-                STATUS ='SAVE', ANY_OTHER_DETAILS='$other_comment' where PRESCRIPTION_ID = '$PRESCRIPTION_ID' and STATUS='DRAFT'") or die(mysql_error());
+    mysqli_query($con,"update prescription set VISIT_ID = '$VISIT_ID',DIET = '$diet', NEXT_VISIT = '$next_visit', 
+                STATUS ='SAVE', ANY_OTHER_DETAILS='$other_comment' where PRESCRIPTION_ID = '$PRESCRIPTION_ID' and STATUS='DRAFT'") or die(mysqli_error());
     
    
     if (isset($_POST['inv'])) {
@@ -96,7 +96,7 @@ include 'classes/admin_class.php';
                     // Act on $value
                     //insert into prescribed_INVESTIGATION
                 //echo "VALUE -> ".$value;
-                    mysql_query("INSERT INTO prescribed_investigation (PRESCRIPTION_ID,INVESTIGATION_ID) 
+                    mysqli_query($con,"INSERT INTO prescribed_investigation (PRESCRIPTION_ID,INVESTIGATION_ID) 
                             values ('".$PRESCRIPTION_ID."','".$value."')");
             }
         }
@@ -109,7 +109,7 @@ include 'classes/admin_class.php';
                     // Act on $value
                     //insert into prescribed_INVESTIGATION
                 //echo "VALUE -> ".$value;
-                    mysql_query("INSERT INTO prescribed_cf (clinical_impression_id,prescription_id) 
+                    mysqli_query($con,"INSERT INTO prescribed_cf (clinical_impression_id,prescription_id) 
                             values ('".$value."','".$PRESCRIPTION_ID."')");
             }
         }
@@ -117,13 +117,13 @@ include 'classes/admin_class.php';
         $query = "update visit set VISITED = 'yes' where VISIT_ID = '$VISIT_ID'";
         //$query = "update visit a set a.VISITED = 'yes' where a.PATIENT_ID = 
           //          (select b.PATIENT_ID  from prescription b where b.prescription_id = '$PRESCRIPTION_ID')";
-        mysql_query($query) or die(mysql_error());
+        mysqli_query($con,$query) or die(mysqli_error());
         
         $query = "select * from visit where VISIT_ID = '$VISIT_ID'";
-        $result = mysql_query($query) or die(mysql_error());
+        $result = mysqli_query($con,$query) or die(mysqli_error());
         
-        while($row = mysql_fetch_array($result)){
-            mysql_query("update visit set VISITED = 'yes' where patient_id = '".$row['PATIENT_ID']."'") or die(mysql_error());
+        while($row = mysqli_fetch_array($result)){
+            mysqli_query($con,"update visit set VISITED = 'yes' where patient_id = '".$row['PATIENT_ID']."'") or die(mysqli_error());
         }
         
         //echo "<div class='b_success'>PRESCRIPTION created successfully<br><h2><a href='visit_list.php'>OK</a></h2></div>";
@@ -151,9 +151,9 @@ include 'classes/admin_class.php';
                         and b.patient_id=c.patient_id 
                         and prescription_id = '".$_POST['PRESCRIPTION_ID']."'";
                 
-                $rsd1 = mysql_query($query)  or die(mysql_error());    
+                $rsd1 = mysqli_query($con,$query)  or die(mysqli_error());    
                 
-                while($d1 = mysql_fetch_object($rsd1) ) {
+                while($d1 = mysqli_fetch_object($rsd1) ) {
                     
                 ?>
                 
@@ -216,8 +216,8 @@ include 'classes/admin_class.php';
                                     FROM prescribed_cf a, clinical_impression b
                                     WHERE a.clinical_impression_id = b.id
                                     AND a.prescription_id = '".$_POST['PRESCRIPTION_ID']."'";
-                            $rsd1 = mysql_query($q15)  or die(mysql_error()); 
-                            while($rs = mysql_fetch_array($rsd1) ) {
+                            $rsd1 = mysqli_query($con,$q15)  or die(mysqli_error()); 
+                            while($rs = mysqli_fetch_array($rsd1) ) {
                                 $result = $rs['type'];
                                 
                                 echo "<tr><td>$result</td></tr>" ;
@@ -235,13 +235,13 @@ include 'classes/admin_class.php';
                         <table>
                             
                         <?php
-    $result = mysql_query("SELECT b.investigation_name, a.value, b.unit
+    $result = mysqli_query($con,"SELECT b.investigation_name, a.value, b.unit
                             FROM patient_investigation a, investigation_master b
                             WHERE a.patient_id = '$patient_id'
                             AND a.visit_id = '$visit_id'
                             AND a.investigation_id = b.ID ");
    
-    while($rows = mysql_fetch_array($result) ){
+    while($rows = mysqli_fetch_array($result) ){
     
 ?>
                            
@@ -276,9 +276,9 @@ include 'classes/admin_class.php';
                                 where
                                 a.ID = b.ID
                                 and a.VISIT_ID = '$visit_id'";
-                            $rsd1 = mysql_query($q15);
+                            $rsd1 = mysqli_query($con,$q15);
 
-                            while($rs = mysql_fetch_array($rsd1)) {
+                            while($rs = mysqli_fetch_array($rsd1)) {
                                     $name = $rs['NAME'];
                                     $value = $rs['VALUE'];
                                     $id = $rs['ID'];
@@ -323,10 +323,10 @@ include 'classes/admin_class.php';
                 
             $query = "select * from prescription where PRESCRIPTION_ID = 
                         '".$PRESCRIPTION_ID."' and VISIT_ID = '".$VISIT_ID."'";
-            $result = mysql_query($query);
+            $result = mysqli_query($con,$query);
             $diet1 = "";
             $nextvisit1 = "";
-            while($rs = mysql_fetch_array($result)){
+            while($rs = mysqli_fetch_array($result)){
                 $diet1 = $rs['DIET'];
                 $nextvisit1 = $rs['NEXT_VISIT'];
                 $other_comment = $rs['ANY_OTHER_DETAILS'];
@@ -352,13 +352,13 @@ include 'classes/admin_class.php';
                         $q11 = "SELECT * FROM precribed_medicine WHERE PRESCRIPTION_ID = '".$_POST['PRESCRIPTION_ID']."'";
                             //echo $q5;
                 
-                            $result = mysql_query($q11) or die(mysql_error()); 
+                            $result = mysqli_query($con,$q11) or die(mysqli_error()); 
                     ?>
                     
                     <table id="table-3">
                           
                          
-                            <?php while($rs = mysql_fetch_array($result)) { ?>
+                            <?php while($rs = mysqli_fetch_array($result)) { ?>
                           <tr>
                             <td><img src="images/stock_list_bullet.png"/>&nbsp<strong><?php echo $rs['MEDICINE_NAME'] ?></strong>
                             <img src="images/arrow-right.png" />
@@ -389,8 +389,8 @@ include 'classes/admin_class.php';
                                         FROM prescribed_investigation a, investigation_master b
                                         WHERE a.investigation_id = b.ID
                                         AND prescription_id = '".$_POST['PRESCRIPTION_ID']."'";
-                                $result = mysql_query($query);
-                                    while($rs = mysql_fetch_array($result)) {
+                                $result = mysqli_query($con,$query);
+                                    while($rs = mysqli_fetch_array($result)) {
                                             $cname = $rs['investigation_name'];
                                             //$inv_id =$rs['ID'];
                                             echo $cname. ", ";

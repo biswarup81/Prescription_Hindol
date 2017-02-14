@@ -12,8 +12,8 @@ echo $admin->deriveClinicalImpressionFromEGFR($eg);
 $sql = "select * from past_medical_history_master a ";
 echo $sql;
 //$sql = "select * from clinical_impression where TYPE LIKE '$q%'";
-$rsd = mysql_query($sql) or die(mysql_error()) ;
-while($rs = mysql_fetch_array($rsd)) {
+$rsd = mysqli_query($con,$sql) or die(mysqli_error()) ;
+while($rs = mysqli_fetch_array($rsd)) {
 	$cname = $rs['TYPE'];
 	echo "$cname\n";
 }

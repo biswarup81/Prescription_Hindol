@@ -165,9 +165,9 @@ function retreve(){
 						
 						$sql = "select * from patient where patient_id = '$patient_id'";
 						$result = query($sql);
-						$no = mysql_num_rows($result);
+						$no = mysqli_num_rows($result);
 						if($no > 0){
-						$d = mysql_fetch_object($result);
+						$d = mysqli_fetch_object($result);
 						$rr = "<table border='0' cellspacing='10'>
 	  <tr>
 		<td><strong>Patient ID :</strong></td>

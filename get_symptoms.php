@@ -9,9 +9,9 @@ $sql = "select * from clinical_impression where TYPE LIKE '$q%'";
 
 $result = array();
 
-$fetch = mysql_query($sql); 
+$fetch = mysqli_query($con,$sql); 
 
-while ($row = mysql_fetch_array($fetch, MYSQL_ASSOC)) {
+while ($row = mysqli_fetch_array($fetch, MYSQL_ASSOC)) {
     
     array_push($result, array("id"=>$row['ID'], 
         "label"=>$row['TYPE'], "value" => strip_tags($row['TYPE'])));

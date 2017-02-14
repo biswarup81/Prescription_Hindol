@@ -27,10 +27,10 @@ $PRESCRIPTION_ID = $_GET['PRESCRIPTION_ID'];
 
 include ('./methods/create_prescription.php');
 
-$result = mysql_query("select * from prescription where PRESCRIPTION_ID = '$PRESCRIPTION_ID' and VISIT_ID = '$visit_id'");
+$result = mysqli_query($con,"select * from prescription where PRESCRIPTION_ID = '$PRESCRIPTION_ID' and VISIT_ID = '$visit_id'");
 $status = 'DRAFT';
-if(mysql_num_rows($result) > 0){
-    while($rs = mysql_fetch_array($result)){
+if(mysqli_num_rows($result) > 0){
+    while($rs = mysqli_fetch_array($result)){
         $status = $rs['STATUS'];
     }
 }

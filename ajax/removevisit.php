@@ -1,6 +1,6 @@
 <?php
 
-require_once "../inc/config.php";
+require_once "../datacon.php";
 
 //echo "CALLED .. RIGHT";
 
@@ -9,10 +9,10 @@ $visit_id = $_GET['VISIT_ID'];
 
 $query = "UPDATE visit SET VISITED = 'cancel' WHERE VISIT_ID = '$visit_id'";
 
-mysql_query($query) or die(mysql_error());
+mysqli_query($con,$query) or die(mysqli_error());
 
 
-$result = mysql_query("SELECT a.visit_id, b.patient_id, a.visited, b.patient_first_name, 
+$result = mysqli_query($con,"SELECT a.visit_id, b.patient_id, a.visited, b.patient_first_name, 
                         b.patient_last_name, b.patient_name, b.patient_cell_num, a.VISIT_DATE
                         FROM visit a, patient b
                         WHERE a.patient_id = b.patient_id
@@ -33,7 +33,7 @@ echo "<table width='100%' border='0' cellspacing='1' cellpadding='0'>
                                                     <td class='head_tbl' align='center' width='150'>Booking Time</td>
                                                     <td class='head_tbl' align='center' width='150'>Action</td>
                                                 </tr>";
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
     
                 echo "<tr>
                     <td class='odd'><a href='create_prescription.php?patient_id="

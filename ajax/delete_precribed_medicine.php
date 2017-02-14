@@ -3,11 +3,11 @@
 include "../datacon.php";
 $MEDICINE_ID = $_GET['MEDICINE_ID'];
 $PRESCRIPTION_ID = $_GET['PRES_ID'];
-mysql_query("delete from precribed_medicine where MEDICINE_ID = '$MEDICINE_ID' and PRESCRIPTION_ID ='$PRESCRIPTION_ID'") or die(mysql_error());
+mysqli_query($con,"delete from precribed_medicine where MEDICINE_ID = '$MEDICINE_ID' and PRESCRIPTION_ID ='$PRESCRIPTION_ID'") or die(mysqli_error());
 
-$result = mysql_query("select * from precribed_medicine where PRESCRIPTION_ID ='$PRESCRIPTION_ID'" );
+$result = mysqli_query($con,"select * from precribed_medicine where PRESCRIPTION_ID ='$PRESCRIPTION_ID'" );
 echo "<table id='table-3'>";
-while($d = mysql_fetch_object($result)){
+while($d = mysqli_fetch_object($result)){
 	echo "<tr>
                 <td>
                     <img src='images/stock_list_bullet.png'/>&nbsp;<strong>".$d->MEDICINE_NAME."</strong>&nbsp;<img src='images/arrow-right.png' />

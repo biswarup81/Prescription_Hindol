@@ -4,10 +4,10 @@ $q=$_GET["q"];
 include("inc/config.php");
 
 $sql = "select * from patient where patient_id = ".$q;
-$result = mysql_query($sql) or die(mysql_error());
-$no = mysql_num_rows($result);
+$result = mysqli_query($con,$sql) or die(mysqli_error());
+$no = mysqli_num_rows($result);
 if($no > 0){
-$d = mysql_fetch_object($result);
+$d = mysqli_fetch_object($result);
 
 /*echo "<table border="0">
 	  <tr>

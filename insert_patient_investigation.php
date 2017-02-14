@@ -11,47 +11,47 @@ $TYPE = $_GET['TYPE'];
 
 $query_getinvestigation_details_from_master = "select * from investigation_master where  investigation_name  = '".$INVESTIGATION_NAME."'" ;
 
-$result = mysql_query($query_getinvestigation_details_from_master) or die(mysql_error());
-if (mysql_num_rows($result) > 0){
+$result = mysqli_query($con,$query_getinvestigation_details_from_master) or die(mysqli_error());
+if (mysqli_num_rows($result) > 0){
     //Investigation exists in Master. Only insert into patient_investigation table
-    $rowresult = mysql_fetch_object($result) or die(mysql_error());
+    $rowresult = mysqli_fetch_object($result) or die(mysqli_error());
     //Get the investigation Id
     $inv_id = $rowresult->ID;
     //Update investigation_master with the updated value
     /*$query_update_into_investigation_master = "update investigation_master set investigation_type = '".$TYPE."', unit = '".$UNIT."'
                                                  where ID = '"+$inv_id+"'";
     
-    mysql_query($query_update_into_investigation_master) or die(mysql_error());*/
+    mysqli_query($con,$query_update_into_investigation_master) or die(mysqli_error());*/
     //update investigation master
-    mysql_query("update investigation_master set  unit = '$UNIT' where ID ='$inv_id'" );
+    mysqli_query($con,"update investigation_master set  unit = '$UNIT' where ID ='$inv_id'" );
 
 //INsert into patient_investigation
     $query_insert_into_patient_investigation = "insert into patient_investigation (patient_id, visit_id, investigation_id, value) 
                                             values ('".$PATIENT_ID."','".$VISIT_ID."','".$inv_id."','".$VALUE."')";
-    mysql_query($query_insert_into_patient_investigation) or die(mysql_error());
+    mysqli_query($con,$query_insert_into_patient_investigation) or die(mysqli_error());
 } else {
     //Investigation does not exists in database
     //Insert into investigation_master 
     $query_insert_into_investigation_master = "insert into investigation_master (investigation_name , investigation_type, unit)
                                                 values('".$INVESTIGATION_NAME."','".$TYPE."','".$UNIT."')";
-    mysql_query($query_insert_into_investigation_master) or die(mysql_error());
+    mysqli_query($con,$query_insert_into_investigation_master) or die(mysqli_error());
     //Get the investigation Id
-    $inv_id = mysql_insert_id() or die(mysql_error());
+    $inv_id = mysql_insert_id() or die(mysqli_error());
     
     //INsert into patient_investigation
     $query_insert_into_patient_investigation = "insert into patient_investigation (patient_id, visit_id, investigation_id, value) 
                                             values ('".$PATIENT_ID."','".$VISIT_ID."','".$inv_id."','".$VALUE."')";
-    mysql_query($query_insert_into_patient_investigation) or die(mysql_error());
+    mysqli_query($con,$query_insert_into_patient_investigation) or die(mysqli_error());
 
 }
 
 //Draw Table
-$result = mysql_query("select b.investigation_name, a.investigation_id,  b.unit, a.value, b.investigation_type
+$result = mysqli_query($con,"select b.investigation_name, a.investigation_id,  b.unit, a.value, b.investigation_type
                             from patient_investigation a, investigation_master b
                             where a.investigation_id = b.ID 
                             and a.visit_id = '$VISIT_ID'
-                            and a.patient_id = '$PATIENT_ID'" ) or die(mysql_error());
-/*while($rs = mysql_fetch_array($result)) { 
+                            and a.patient_id = '$PATIENT_ID'" ) or die(mysqli_error());
+/*while($rs = mysqli_fetch_array($result)) { 
         echo "<table width='100%' border='0' cellspacing='0' cellpadding='0'>";
         echo "<tr>";
         echo "<td width='240' height='23' align='left'>".$rs['investigation_name']." 
@@ -68,7 +68,7 @@ $result = mysql_query("select b.investigation_name, a.investigation_id,  b.unit,
         echo "</table>"; 
 } */
 
-while($d = mysql_fetch_object($result)){
+while($d = mysqli_fetch_object($result)){
     echo "<table width='100%'>";
         echo "<tr>";
             echo "<td  width='240' height='23' align='left' >".$d->investigation_name."</td>";

@@ -6,14 +6,14 @@
         <tr><td id="INV" width="100%" colspan="3">
 
             <?php
-                $result = mysql_query( "SELECT b.investigation_name, a.value, b.unit, investigation_id
+                $result = mysqli_query($con,"SELECT b.investigation_name, a.value, b.unit, investigation_id
                     FROM patient_investigation a, investigation_master b
                     WHERE a.patient_id = '$patient_id'
                     AND a.visit_id = '$visit_id'
                     AND a.investigation_id = b.ID");
-                //$rsd1 = mysql_query($q15);
+                //$rsd1 = mysqli_query($con,$q15);
 
-                while($rows = mysql_fetch_array($result) ){
+                while($rows = mysqli_fetch_array($result) ){
                     
             ?>
                 <table>      

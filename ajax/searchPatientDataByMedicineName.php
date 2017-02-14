@@ -16,8 +16,8 @@ $sql1 = "select pm.PRESCRIPTION_ID, pm.MEDICINE_NAME, v.visit_date,  p.patient_f
 //echo $sql1;
 
 //$sql1 = "select * from patient where patient_id != ''".$where;
-$result1 = mysql_query($sql1)or die(mysql_error());
-$no = mysql_num_rows($result1);
+$result1 = mysqli_query($con,$sql1)or die(mysqli_error());
+$no = mysqli_num_rows($result1);
 echo "<table width='888' border='0' cellspacing='0' cellpadding='0'>
         <tr>
         <td class='bg_tble'>                    
@@ -37,7 +37,7 @@ if($no > 0){
         </tr>";
         
         
-        while($d1 = mysql_fetch_array($result1)){
+        while($d1 = mysqli_fetch_array($result1)){
            echo "<tr>
                 <td class='odd'>".$d1['patient_id']."</td>
                 <!--<td class='odd'><a href='processData.php?patient_id=".$d1['patient_id']."' class='vlink'>".$d1['patient_id']."</a></td> -->

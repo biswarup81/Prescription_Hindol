@@ -124,11 +124,11 @@ function check(){
 						echo "<table border='1' cellpadding='5' width='500' align='center'><tr><th>Name</th><th> Address </th><th> Mobile No. </th><th> Date Added </th></tr>";
 						//$sql1 = "select * from patient where patient_id = '$patient_id'";
 						$sql1 = "select * from patient where patient_id != ''".$where;
-						$result1 = mysql_query($sql1) or die(mysql_error());
-						$no = mysql_num_rows($result1);
+						$result1 = mysqli_query($con,$sql1) or die(mysqli_error());
+						$no = mysqli_num_rows($result1);
 						if($no > 0){
 						
-					while($d1 = mysql_fetch_object($result1)){
+					while($d1 = mysqli_fetch_object($result1)){
 						echo "<tr><td><a href='reception.php?patient_id=$d1->patient_id'>".$d1->patient_first_name." ".$d1->patient_last_name."</a></td><td>".$d1->patient_address."</td>
 								<td>".$d1->patient_cell_num."</td><td>".date('d / m / Y', strtotime($d1->data_entry_date))."</td></tr>";
 					}

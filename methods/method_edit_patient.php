@@ -15,8 +15,8 @@ $gender = "";
 
 $sql1 = "select * from patient where patient_id = '". $patient_id. "'" ;
 //echo $sql1;
-$result1 = mysql_query($sql1)or die(mysql_error());
-    while($d1 = mysql_fetch_array($result1)){
+$result1 = mysqli_query($con,$sql1)or die(mysqli_error());
+    while($d1 = mysqli_fetch_array($result1)){
       $gender =   $d1['GENDER'];
       $fname = $d1['patient_first_name'];
       $lname = $d1['patient_last_name'];

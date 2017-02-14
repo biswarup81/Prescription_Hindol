@@ -10,9 +10,9 @@
                         FROM prescribed_allergy a, allergy_master b
                         WHERE a.ALLERGY_ID = b.ALLERGY_ID
                         AND a.PRESCRIPTION_ID = '$PRESCRIPTION_ID'";
-                $rsd1 = mysql_query($q15);
+                $rsd1 = mysqli_query($con,$q15);
 
-                while($rs = mysql_fetch_array($rsd1)) {
+                while($rs = mysqli_fetch_array($rsd1)) {
                     $type = $rs['ALLERGY_NAME'];
                     $allergy_name = $rs['ALLERGY_ID'];
             ?>

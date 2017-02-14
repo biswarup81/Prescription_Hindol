@@ -13,10 +13,10 @@ if($status == 'SAVE'){ ?>
                         AND a.prescription_id = '$PRESCRIPTION_ID'";
                             //echo $q5;
                     
-                            $result = mysql_query($q11) or die(mysql_error()); 
+                            $result = mysqli_query($con,$q11) or die(mysqli_error()); 
                             
 
-                            while($rs = mysql_fetch_array($result)) {
+                            while($rs = mysqli_fetch_array($result)) {
             ?>
                 <?php echo $rs['investigation_name']; ?>, &nbsp;
             <?php    } ?>
@@ -34,9 +34,9 @@ if($status == 'SAVE'){ ?>
                         FROM prescribed_investigation a, investigation_master b
                         WHERE a.INVESTIGATION_ID = b.ID
                         AND a.prescription_id = '$PRESCRIPTION_ID'";
-                $rsd1 = mysql_query($q15);
+                $rsd1 = mysqli_query($con,$q15);
 
-                while($rs = mysql_fetch_array($rsd1)) {
+                while($rs = mysqli_fetch_array($rsd1)) {
                    $cname = $rs['investigation_name'];
                    $inv_id =$rs['ID'];
             ?>

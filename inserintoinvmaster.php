@@ -6,11 +6,11 @@ $investigation_name =$_GET["investigation_name"];
 $type = $_GET["investigation_type"];
 
 $sql = "insert into investigation_master(investigation_name,investigation_type) values ('$investigation_name','$type')";
-mysql_query($sql) or die(mysql_error());
+mysqli_query($con,$sql) or die(mysqli_error());
 
 $query = "select * from investigation_master where investigation_type = '$type'";
-                                $result = mysql_query($query);
-                                    while($rs = mysql_fetch_array($result)) {
+                                $result = mysqli_query($con,$query);
+                                    while($rs = mysqli_fetch_array($result)) {
                                             $cname = $rs['investigation_name'];
                                             echo "<input name='".$cname."' type='checkbox' value='".$cname."' />".$cname;
                                     } 

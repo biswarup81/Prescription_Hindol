@@ -10,9 +10,9 @@
                         FROM prescribed_cf a, clinical_impression b
                         WHERE a.clinical_impression_id = b.id
                         AND a.prescription_id = '$PRESCRIPTION_ID'";
-                $rsd1 = mysql_query($q15);
+                $rsd1 = mysqli_query($con,$q15);
 
-                while($rs = mysql_fetch_array($rsd1)) {
+                while($rs = mysqli_fetch_array($rsd1)) {
                     $type = $rs['type'];
                     $cf_d = $rs['ID'];
             ?>

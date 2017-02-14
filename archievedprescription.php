@@ -24,9 +24,9 @@
                         and b.patient_id=c.patient_id 
                         and prescription_id = '".$_GET['PRESCRIPTION_ID']."'";
                 
-               $rsd1 = mysql_query($query)  or die(mysql_error());    
+               $rsd1 = mysqli_query($con,$query)  or die(mysqli_error());    
                 
-                while($d1 = mysql_fetch_object($rsd1) ) {
+                while($d1 = mysqli_fetch_object($rsd1) ) {
                     
                 ?>
                 <div class="content">
@@ -74,8 +74,8 @@
                                     FROM prescribed_cf a, clinical_impression b
                                     WHERE a.clinical_impression_id = b.id
                                     AND a.prescription_id = '".$_GET['PRESCRIPTION_ID']."'";
-                            $rsd1 = mysql_query($q15)  or die(mysql_error()); 
-                            while($rs = mysql_fetch_array($rsd1) ) {
+                            $rsd1 = mysqli_query($con,$q15)  or die(mysqli_error()); 
+                            while($rs = mysqli_fetch_array($rsd1) ) {
                                 $result = $rs['type'];
                                 
                                 echo $result ;
@@ -92,13 +92,13 @@
                         <table>
                             
                         <?php
-    $result = mysql_query("SELECT b.investigation_name, a.value, b.unit
+    $result = mysqli_query($con,"SELECT b.investigation_name, a.value, b.unit
                             FROM patient_investigation a, investigation_master b
                             WHERE a.patient_id = '".$_GET['patient_id']."'
                             AND a.visit_id = '".$_GET['visit_id']."'
                             AND a.investigation_id = b.ID ");
     
-    while($rows = mysql_fetch_array($result) ){
+    while($rows = mysqli_fetch_array($result) ){
     
 ?>
                            
@@ -136,9 +136,9 @@
                                 where
                                 a.ID = b.ID
                                 and a.VISIT_ID = '".$_GET['visit_id']."' ";
-					 $rsd1 = mysql_query($q15);
+					 $rsd1 = mysqli_query($con,$q15);
 
-                            while($rs = mysql_fetch_array($rsd1)) {
+                            while($rs = mysqli_fetch_array($rsd1)) {
                                     $name = $rs['NAME'];
                                     $value = $rs['VALUE'];
                                     $id = $rs['ID'];
@@ -176,7 +176,7 @@
                         $q11 = "SELECT * FROM precribed_medicine WHERE PRESCRIPTION_ID = '".$_GET['PRESCRIPTION_ID']."'";
                             //echo $q5;
                 
-                            $result = mysql_query($q11) or die(mysql_error()); 
+                            $result = mysqli_query($con,$q11) or die(mysqli_error()); 
                     ?>
                     
                     <table width="720" border="0" cellspacing="1" cellpadding="1" id="datatable">
@@ -193,7 +193,7 @@
                             	
                             </td>
                           </tr>
-                            <?php while($rs = mysql_fetch_array($result)) { ?>
+                            <?php while($rs = mysqli_fetch_array($result)) { ?>
                           <tr>
                             <td class="odd_tb"><?php echo $rs['MEDICINE_NAME'] ?></td>
                             <td class="odd_tb"><?php echo $rs['MEDICINE_DIRECTION'] ?></td>
@@ -218,10 +218,10 @@
                     
                     $query = "select * from prescription where PRESCRIPTION_ID = 
                         '".$prescriptionid."' and VISIT_ID = '".$visit_id."'";
-                    $result = mysql_query($query);
+                    $result = mysqli_query($con,$query);
                     $diet1 = "";
                     $nextvisit1 = "";
-                    while($rs = mysql_fetch_array($result)){
+                    while($rs = mysqli_fetch_array($result)){
                         $diet1 = $rs['DIET'];
                         $nextvisit1 = $rs['NEXT_VISIT'];
                         $other_comment = $rs['ANY_OTHER_DETAILS'];
@@ -250,8 +250,8 @@
                                         FROM prescribed_investigation a, investigation_master b
                                         WHERE a.investigation_id = b.ID
                                         AND prescription_id = '".$_GET['PRESCRIPTION_ID']."'";
-                                $result = mysql_query($query);
-                                    while($rs = mysql_fetch_array($result)) {
+                                $result = mysqli_query($con,$query);
+                                    while($rs = mysqli_fetch_array($result)) {
                                             $cname = $rs['investigation_name'];
                                             //$inv_id =$rs['ID'];
                                             echo $cname. ", ";

@@ -1,6 +1,6 @@
 <?php
 
-require_once "../inc/config.php";
+require_once "../datacon.php";
 
 $medincineID = $_GET["medincineID"];
 $mode = $_GET["MODE"];
@@ -10,7 +10,7 @@ if($mode == 'DELETE'){
     $query = "UPDATE medicine_master SET MEDICINE_STATUS='INACTIVE' where 
                 MEDICINE_ID = '".$medincineID."'";
 
-    mysql_query($query)or die(mysql_error());
+    mysqli_query($con,$query)or die(mysqli_error());
 
     include 'searchMedicine.php';
     
@@ -18,14 +18,14 @@ if($mode == 'DELETE'){
     $sql1 = "select * from medicine_master where 
                 MEDICINE_ID = '".$medincineID."' 
                 and MEDICINE_STATUS = 'ACTIVE' ";
-    $result1 = mysql_query($sql1)or die(mysql_error());
-    $no = mysql_num_rows($result1);
+    $result1 = mysqli_query($con,$sql1)or die(mysqli_error());
+    $no = mysqli_num_rows($result1);
     echo "<table width='600' border='0' cellspacing='0' cellpadding='0'>";
       echo "<td class='head_tbl'>Medicine Name</td>
        
         <td class='head_tbl' colspan='1'>ACTION</td>
         </tr>";
-   while($d1 = mysql_fetch_array($result1)){
+   while($d1 = mysqli_fetch_array($result1)){
            echo "<tr>
                 <td class='odd'> <input type='text' id='med_name' value='".$d1['MEDICINE_NAME']."' ></td>
                 
@@ -41,7 +41,7 @@ if($mode == 'DELETE'){
                 MEDICINE_ID = '".$medincineID."'";
 
     //echo $query;
-    mysql_query($query)or die(mysql_error());
+    mysqli_query($con,$query)or die(mysqli_error());
 
     include 'searchMedicine.php';
     

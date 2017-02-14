@@ -1,5 +1,5 @@
 <?php
-require_once "../inc/config.php";
+require_once "../datacon.php";
 $medicine_name=ucfirst($_GET["medicine_name"]);
 $dose = $_GET['dose'];
 //$direction = $_GET['direction'];
@@ -31,23 +31,23 @@ if($dose3 != ""){
 
 
 $sql0 = "select * from medicine_master where MEDICINE_NAME = '$medicine_name'";
-$result0 = mysql_query($sql0) or die(mysql_error());
-if(mysql_num_rows($result0) == 0){
-mysql_query("insert into medicine_master(MEDICINE_NAME,  MEDICINE_ENTRY_DATE_TIME) 
-			values('$medicine_name', NOW())") or die(mysql_error());
+$result0 = mysqli_query($con,$sql0) or die(mysqli_error());
+if(mysqli_num_rows($result0) == 0){
+mysqli_query($con,"insert into medicine_master(MEDICINE_NAME,  MEDICINE_ENTRY_DATE_TIME) 
+			values('$medicine_name', NOW())") or die(mysqli_error());
 }
 
 
 $sql3 = "insert into precribed_medicine (PRESCRIPTION_ID, MEDICINE_NAME, MEDICINE_DOSE) 
 								values('$PRESCRIPTION_ID','$medicine_name', '$dose')";
-mysql_query($sql3) or die(mysql_error());
+mysqli_query($con,$sql3) or die(mysqli_error());
 
 
 $sql2 = "select * from precribed_medicine where PRESCRIPTION_ID = '$PRESCRIPTION_ID'";
-$result = mysql_query($sql2) or die(mysql_error());
+$result = mysqli_query($con,$sql2) or die(mysqli_error());
 
 echo "<table id='table-3'>";
-while($d = mysql_fetch_object($result)){
+while($d = mysqli_fetch_object($result)){
 	echo "<tr>
                 <td>
                     <img src='images/stock_list_bullet.png'/>&nbsp;<strong>".$d->MEDICINE_NAME."</strong>&nbsp;<img src='images/arrow-right.png' />
@@ -75,11 +75,11 @@ if(mysql_affected_rows() > 0){
         $query_search = "select * from dose_details_master where DOSE_DETAILS = '".$dose."'";
         $query_insert = "insert into dose_details_master(DOSE_DETAILS) values ('".$dose."')";
         
-        $result = mysql_query($query_search);
+        $result = mysqli_query($con,$query_search);
 	
-        if (mysql_num_rows($result) <= 0){
+        if (mysqli_num_rows($result) <= 0){
             //Insert into dose_details_master
-            mysql_query($query_insert);
+            mysqli_query($con,$query_insert);
         } 
         
     }

@@ -17,20 +17,20 @@ if( isset($_GET['MODE']) ){
     
     //Delete
     $query_del = "delete from patient_health_details where VISIT_ID = '".$visit_id."'";
-    mysql_query($query_del);
+    mysqli_query($con,$query_del);
     
     $query1 = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
             values('2' , '".$weight."', '".$visit_id."')";
-    mysql_query($query1);
+    mysqli_query($con,$query1);
 
     $query2 = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
                 values('1' , '".$height."', '".$visit_id."')";
-    mysql_query($query2);
+    mysqli_query($con,$query2);
 
     $query3 = "insert into patient_health_details(ID, VALUE, VISIT_ID) 
                 values('3' , '".$bmi."', '".$visit_id."')";
     
-    mysql_query($query3);
+    mysqli_query($con,$query3);
     
      echo 'UPDATED -> '.$height." ".$weight." ".$visit_id;
  }  else {

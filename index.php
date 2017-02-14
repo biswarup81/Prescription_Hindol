@@ -192,15 +192,15 @@ if(isset($_SESSION['user_type'])) {
                                                         patient_last_name, patient_address, patient_city, patient_dob, patient_cell_num,
 							patient_alt_cell_num, patient_email, data_entry_date) 
                                                         values('$gender','$fname', '$lname', '$addr', '$city', '$dob' ,'$cellnum', '$altcellnum', '$email', NOW())";
-						mysql_query($sql1) or die(mysql_error());
+						mysqli_query($con,$sql1) or die(mysqli_error());
 						
 						$id = mysql_insert_id();
 						//$sql2 = "insert into visit (PATIENT_ID, VISIT_DATE, APPOINTMENT_TO_DOC_NAME) values('$id', NOW(), '')";
-						//mysql_query($sql2) or die(mysql_error());
+						//mysqli_query($con,$sql2) or die(mysqli_error());
 						//$visit_id = mysql_insert_id();
 						
 						/*$sql3 = "insert into patient_health_details_by_receptionist (patient_id) values('$id')";
-						mysql_query($sql3) or die(mysql_error());*/
+						mysqli_query($con,$sql3) or die(mysqli_error());*/
 						
 						echo "<div class='b_success'>$fname $lname data saved successfully<br><h2><a href='processData.php?patient_id=$id'>OK</a></h2></div>";
 					}else{

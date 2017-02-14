@@ -15,9 +15,9 @@ if($status == 'SAVE'){ ?>
                                 where
                                 a.ID = b.ID
                                 and a.VISIT_ID = '$visit_id'";
-                            $rsd1 = mysql_query($q15);
+                            $rsd1 = mysqli_query($con,$q15);
 
-                            while($rs = mysql_fetch_array($rsd1)) {
+                            while($rs = mysqli_fetch_array($rsd1)) {
             ?>
                 <?php echo $rs['NAME']; ?> - <?php echo $rs['VALUE']; ?>,&nbsp;&nbsp;
             <?php    } ?>
@@ -49,9 +49,9 @@ if($status == 'SAVE'){ ?>
                                 a.ID = b.ID
                                 and a.VISIT_ID = '$visit_id'";
                             //echo $q15;
-                            $rsd1 = mysql_query($q15) or die (mysql_error());
+                            $rsd1 = mysqli_query($con,$q15) or die (mysqli_error());
 
-                            while($rs = mysql_fetch_array($rsd1)) {
+                            while($rs = mysqli_fetch_array($rsd1)) {
                                     $name = $rs['NAME'];
                                     $value = $rs['VALUE'];
                                     $id = $rs['ID'];

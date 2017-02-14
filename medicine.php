@@ -10,10 +10,10 @@ if($status == 'SAVE'){ ?>
                  $q11 = "SELECT * FROM precribed_medicine WHERE PRESCRIPTION_ID = '".$PRESCRIPTION_ID."'";
                             //echo $q5;
                     
-                            $result = mysql_query($q11) or die(mysql_error()); 
+                            $result = mysqli_query($con,$q11) or die(mysqli_error()); 
                             
 
-                            while($rs = mysql_fetch_array($result)) {
+                            while($rs = mysqli_fetch_array($result)) {
             ?>
                 <?php echo $rs['MEDICINE_NAME'] ?> - <?php echo $rs['MEDICINE_DOSE'] ?><br/>
             <?php    } ?>
@@ -46,13 +46,13 @@ if($status == 'SAVE'){ ?>
                     $q11 = "SELECT * FROM precribed_medicine WHERE PRESCRIPTION_ID = '".$PRESCRIPTION_ID."'";
                             //echo $q5;
                     
-                            $result = mysql_query($q11) or die(mysql_error()); 
+                            $result = mysqli_query($con,$q11) or die(mysqli_error()); 
                     ?>
                    
                     <div  id="medicine" colspan="5">
                        
                         <table id="table-3"> 
-                        <?php while($rs = mysql_fetch_array($result)) { ?>
+                        <?php while($rs = mysqli_fetch_array($result)) { ?>
 
                             <tr>
                                 <td>

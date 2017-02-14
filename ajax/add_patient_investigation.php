@@ -24,15 +24,15 @@ $admin = new admin();
 $admin->insertUpdatePatientInvestigation($INVESTIGATION_NAME, $TYPE, $UNIT, $VALUE, $PATIENT_ID, $VISIT_ID );
 
 //Draw Table
-$result = mysql_query("select b.investigation_name, a.investigation_id,  b.unit, a.value, b.investigation_type
+$result = mysqli_query($con,"select b.investigation_name, a.investigation_id,  b.unit, a.value, b.investigation_type
                             from patient_investigation a, investigation_master b
                             where a.investigation_id = b.ID 
                             and a.visit_id = '$VISIT_ID'
-                            and a.patient_id = '$PATIENT_ID'" ) or die(mysql_error());
+                            and a.patient_id = '$PATIENT_ID'" ) or die(mysqli_error());
 
 
 
-/*while($rs = mysql_fetch_array($result)) { 
+/*while($rs = mysqli_fetch_array($result)) { 
         echo "<table width='100%' border='0' cellspacing='0' cellpadding='0'>";
         echo "<tr>";
         echo "<td width='240' height='23' align='left'>".$rs['investigation_name']." 
@@ -49,7 +49,7 @@ $result = mysql_query("select b.investigation_name, a.investigation_id,  b.unit,
         echo "</table>"; 
 } */
 echo "<table>";
-while($d = mysql_fetch_object($result)){
+while($d = mysqli_fetch_object($result)){
     
         echo "<tr>";
             echo "<td width='120'>".$d->investigation_name."</td>";

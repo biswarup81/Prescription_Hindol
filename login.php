@@ -24,9 +24,9 @@ $password = mysql_real_escape_string($password);
 // Selecting Database
 
 // SQL query to fetch information of registerd users and finds user match.
-$query = mysql_query("select * from user where user_password='$password' AND user_name='$username'", $con);
+$query = mysqli_query($con,"select * from user where user_password='$password' AND user_name='$username'", $con);
 
-$rows = mysql_num_rows($query);
+$rows = mysqli_num_rows($query);
 if ($rows == 1) {
 $_SESSION['login_user']=$username; // Initializing Session
 header("location: home.php"); // Redirecting To Other Page

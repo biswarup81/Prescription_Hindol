@@ -47,10 +47,10 @@ if(isset($_SESSION['user_type'])) {
                                                     <td class="head_tbl" align="center" width="150">Action</td>
                                                 </tr>
 <?php
-//$result = mysql_query("select a.visit_id, a.patient_id, b.patient_first_name, b.patient_last_name, b.patient_cell_num, a.VISIT_DATE from visit a, patient b where a.patient_id = b.patient_id order by a.visit_id desc");
+//$result = mysqli_query($con,"select a.visit_id, a.patient_id, b.patient_first_name, b.patient_last_name, b.patient_cell_num, a.VISIT_DATE from visit a, patient b where a.patient_id = b.patient_id order by a.visit_id desc");
 
 
-$result = mysql_query("SELECT a.visit_id, b.patient_id, a.visited, b.patient_first_name, 
+$result = mysqli_query($con,"SELECT a.visit_id, b.patient_id, a.visited, b.patient_first_name, 
                         b.patient_last_name, b.patient_name, b.patient_cell_num, a.VISIT_DATE
                         FROM visit a, patient b
                         WHERE a.patient_id = b.patient_id
@@ -61,7 +61,7 @@ $result = mysql_query("SELECT a.visit_id, b.patient_id, a.visited, b.patient_fir
                             GROUP BY patient_id)
                             order by VISIT_DATE desc") ;
 
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
     ?>
                 <tr >
                     <td class='odd'><a href="create_prescription.php?patient_id=<?php echo $row['patient_id'] ?>&VISIT_ID=<?php echo $row['visit_id']; ?>">

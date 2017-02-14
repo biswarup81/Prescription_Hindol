@@ -10,9 +10,9 @@ $sql = "select * from medicine_master where MEDICINE_NAME LIKE '$q%' and MEDICIN
 
 $result = array();
 
-$fetch = mysql_query($sql); 
+$fetch = mysqli_query($con,$sql); 
 
-while ($row = mysql_fetch_array($fetch, MYSQL_ASSOC)) {
+while ($row = mysqli_fetch_array($fetch, MYSQL_ASSOC)) {
     
     array_push($result, array("id"=>$row['MEDICINE_ID'], 
         "label"=>$row['MEDICINE_NAME'], "value" => strip_tags($row['MEDICINE_NAME'])));
